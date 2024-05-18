@@ -1,118 +1,217 @@
+import { SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-
+import Link from "next/link";
+import HomeBanner from '../components/HomeBanner';
+import Banner from '../components/Banner';
+import RecommendedGames from '../components/RecommendedGames';
+import TopRatedGames from '../components/TopRatedGames';
+import MultipleGame from '../components/MultipleGame';
+import RecentBigWins from '../components/RecentBigWins';
+import LatestBet from '../components/LatestBet';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [accordionState, setAccordionState] = useState(0);
+    const accordion = (any: SetStateAction<number>) => {
+        setAccordionState(any);
+
+}
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started playing games&nbsp;
-          <code className="font-mono font-bold">Color pridiction</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <HomeBanner></HomeBanner>
+      <Banner></Banner>
+      <MultipleGame></MultipleGame>
+      <RecentBigWins></RecentBigWins>
+      <TopRatedGames></TopRatedGames>
+      <LatestBet></LatestBet>
+      <RecommendedGames></RecommendedGames>
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-top padding-tb d-grid">
+            <div className={accordionState === 1 ? "footer-col active" : "footer-col"}>
+              <h6 onClick={()=>accordion(1)} className={accordionState === 1 ? "gamexxsheading" : "gamexxsheading" }>
+                Casino
+                <span>
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 9.49995L0.499998 1.99995L1.55 0.949951L8 7.39995L14.45 0.949951L15.5 1.99995L8 9.49995Z" fill="#B0D235" />
+                  </svg>                
+                </span>
+              </h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+              </ul>
+            </div>
+            <div className={accordionState === 2 ? "footer-col active" : "footer-col"}>
+              <h6 onClick={()=>accordion(2)} className={accordionState === 2 ? "gamexxsheading" : "gamexxsheading" }>
+                Casino
+                <span>
+                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 9.49995L0.499998 1.99995L1.55 0.949951L8 7.39995L14.45 0.949951L15.5 1.99995L8 9.49995Z" fill="#B0D235" />
+                  </svg>                
+                </span>
+              </h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h6 className="gamexxsheading">Casino</h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h6 className="gamexxsheading">Casino</h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col">
+              <h6 className="gamexxsheading">Casino</h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+                <li>
+                  <a href="#">Casino Home</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-col footer-social">
+              <h6 className="gamexxsheading">Join our Community</h6>
+              <ul className="footer-list">
+                <li>
+                  <a href="#">
+                    <Image width={80} height={80} className="w-full" src={'/assets/images/icons/facebook-icon.png'} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <Image width={80} height={80} className="w-full" src={'/assets/images/icons/facebook-icon.png'} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <Image width={80} height={80} className="w-full" src={'/assets/images/icons/facebook-icon.png'} alt="" />
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <Image width={80} height={80} className="w-full" src={'/assets/images/icons/facebook-icon.png'} alt="" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-partner padding-tb">
+            <div className="gamesmheading">Sponsorship and Gaming Responsibilities</div>
+            <div className="footer-partner-list d-grid">
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+              <div className="item">
+                <Link href='#'>
+                  <Image width={256} height={144} className="w-full" src={'/assets/images/sigma.jpg'} alt="" />
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom padding-tb">
+            <div className="footer-logo">
+              <Link href='#'>
+                <Image width={810} height={199} className="w-full" src={'/assets/images/footer-logo.png'} alt=""/>
+              </Link>
+            </div>
+            <div className="footer-content d-grid">
+              <div className="footer-content-left">
+                <p>A multi-award winning crypto casino. With a player-centric approach, bc.ai is able to satisfy millions of gamblers across the globe. bc.ai has its priority set on its community, ensuring an everlasting and endlessly entertaining gambling experience.</p>
+                <p>Your use of and access to bc.ai signifies that you fully understand and agree to be legally bound by the contents of our Terms of Service and Responsible Gaming Policy.</p>
+                <p>Crypto trading is not gambling by definition, therefore it is not covered by our gaming license.</p>
+                <p>COPYRIGHT ©2024 BLOCKDANCE B.V. ALL RIGHTS RESERVED</p>
+                <p>1BTC=$61,416.98</p>
+              </div>
+              <div className="footer-content-right">
+                <p>BC.AI is operated under a non-exclusive license by Small House B.V, a company registered in Curacao with Company Number 164979 and with Registered Address at: Zuikertuintjeweg Z/N, Curacao.</p>
+                <div className="footer-licensed d-flex">
+                  <Link href='#' className="licensed-logo">
+                    <Image width={160} height={144} className="w-full" src={'/assets/images/licensed.png'} alt=""/>
+                  </Link>
+                  <p>Small House B.V., is licensed and regulated by the Gaming Control Board (GCB) with Licence Number: OGL/2023/118/0060 Issued in 22nd February 2024. Trust Service by <Link href='https://wyze-trust.com'>https://wyze-trust.com</Link> and Represented by <Link href='https://igagroup.com'>https://igagroup.com</Link></p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </footer>
     </main>
   );
 }
