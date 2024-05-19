@@ -2,6 +2,8 @@ import { SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import Header from '../components/header';
+import Search from '../components/Search';
 import HomeBanner from '../components/HomeBanner';
 import Banner from '../components/Banner';
 import RecommendedGames from '../components/RecommendedGames';
@@ -19,6 +21,8 @@ export default function Home() {
 }
   return (
     <main>
+      <Header></Header>
+      <Search></Search>
       <HomeBanner></HomeBanner>
       <Banner></Banner>
       <MultipleGame></MultipleGame>
