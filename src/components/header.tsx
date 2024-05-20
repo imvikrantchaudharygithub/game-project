@@ -122,6 +122,14 @@ export default function Header() {
                     </ul>
                   </div>
                 </div>
+                <div className="amount-tag">
+                  <div className="amount-icon">
+                    <Image width={48} height={48} className="icon" src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
+                  </div>
+                  <div className="amountnum">
+                    3000
+                  </div>
+                </div>
               </div>
             </div>
           </div>

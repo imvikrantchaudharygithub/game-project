@@ -2,11 +2,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { SetStateAction, useState } from "react";
 import Breadcrumb from '../components/Breadcrumb';
+import React from "react";
 export default function fastparity() {
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index: SetStateAction<number>) =>{
         setToggleState(index);
-    }
+    };
+    const [toggleBet, setToggleBetState] = useState(1);
+    const toggleBetTab = (index: SetStateAction<number>) =>{
+        setToggleBetState(index);
+    };
+    const [count, setCount] = React.useState<number>(0);
+  
+  const inc = (event: any) => {
+    setCount(count + 1);
+  };
+  
+  const dec = () => {
+    setCount(count - 1);
+  }
     return (
       <>
         <Breadcrumb></Breadcrumb>
@@ -35,15 +49,15 @@ export default function fastparity() {
                                     </div>
                                     <div className="fastparity-join d-grid">
                                         <div className="fastparity-join-box disabled">
-                                            <button className="anchor-button">Join Green</button>
+                                            <button className="anchor-button">Green</button>
                                             <p>1.95X</p>
                                         </div>
                                         <div className="fastparity-join-box">
-                                            <button className="anchor-button anchor-pink-button">Join Violet</button>
+                                            <button className="anchor-button anchor-pink-button">Violet</button>
                                             <p>1.95X</p>
                                         </div>
                                         <div className="fastparity-join-box">
-                                            <button className="anchor-button">Join Red</button>
+                                            <button className="anchor-button anchor-red-button">Red</button>
                                             <p>1.95X</p>
                                         </div>
                                     </div>
@@ -200,6 +214,72 @@ export default function fastparity() {
                                     <div className={toggleState === 1 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab (1)}>Continuous</div>
                                     <div className={toggleState === 2 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab (2)}>Record</div>
                                     <div className={toggleState === 3 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab (3)}>Probability</div>
+                                </div>
+                            </div>
+                            <div className="fastparity-bet d-flex">
+                                <div className="fastparity-bet-left relative">
+                                    <button className="plus-btn">+</button>
+                                    <div className="fastparity-bet-tab custom-tab d-flex">
+                                        <div className={toggleBet === 1 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab (1)}>Latest bets</div>
+                                        <div className={toggleBet === 2 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab (2)}>High rollers</div>
+                                    </div>
+                                    <div className="fastparity-bet-content">
+                                        <div className={toggleBet === 1 ? "content-tab active" : "content-tab"}>
+                                            <div className="fastparity-bet-box d-flex">
+                                                <div className="fastparity-bet-amount">
+                                                    <div className="count d-flex">
+                                                        <button className="count-btn" onClick={dec}>-</button>
+                                                        <input className="count-num" type="number" value={count}/>
+                                                        <button className="count-btn" onClick={inc}>+</button>
+                                                    </div>
+                                                    <div className="fastparity-num-list d-grid">
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                    </div>
+                                                </div>
+                                                <div className="fastparity-bet-amount">
+                                                    <button className="anchor-button bet-btn">
+                                                        Bet
+                                                        <span>1.00 Usd</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="fastparity-bet-right relative">
+                                    <button className="plus-btn">-</button>
+                                    <div className="fastparity-bet-tab custom-tab d-flex">
+                                        <div className={toggleBet === 1 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab (1)}>Latest bets</div>
+                                        <div className={toggleBet === 2 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab (2)}>High rollers</div>
+                                    </div>
+                                    <div className="fastparity-bet-content">
+                                        <div className={toggleBet === 1 ? "content-tab active" : "content-tab"}>
+                                            <div className="fastparity-bet-box d-flex">
+                                                <div className="fastparity-bet-amount">
+                                                    <div className="count d-flex">
+                                                        <button className="count-btn" onClick={dec}>-</button>
+                                                        <input className="count-num" type="number" value={count}/>
+                                                        <button className="count-btn" onClick={inc}>+</button>
+                                                    </div>
+                                                    <div className="fastparity-num-list d-grid">
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                        <button className="fastparity-num-item hovertime">20</button>
+                                                    </div>
+                                                </div>
+                                                <div className="fastparity-bet-amount">
+                                                    <button className="anchor-button bet-btn">
+                                                        Bet
+                                                        <span>1.00 Usd</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
