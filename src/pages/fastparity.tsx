@@ -102,18 +102,98 @@ export default function fastparity() {
                             <div className="fastparity-panel-box">
                                 <div className="fastparity-panel-content">
                                     <div className={toggleState === 1 ? "fastparity-panel active" : "fastparity-panel"}>
-                                        <div className="continuous-option d-flex">
+                                        {/* <div className="continuous-option d-flex">
                                             <div className="continuous continuous-option-left">Old</div>
                                             <div className="continuous continuous-option-right">new</div>
-                                        </div>
+                                        </div> */}
                                         <div className="continuous-main">
-                                            <div className="continuous-item">
+                                                <div className="table-responsive">
+                                                    <table className="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Period</th>
+                                                                <th>Price</th>
+                                                                <th>Number</th>
+                                                                <th>Result</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td className="period">
+                                                                    101720221827
+                                                                </td>
+                                                                <td className="period">
+                                                                    8887
+                                                                </td>
+                                                                <td className="number">
+                                                                    0
+                                                                </td>
+                                                                <td>
+                                                                    <div className="result">
+                                                                        <span className="result-bg"></span>
+                                                                        <span className="result-bg"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="period">
+                                                                    101720221827
+                                                                </td>
+                                                                <td className="period">
+                                                                    8887
+                                                                </td>
+                                                                <td className="number">
+                                                                    0
+                                                                </td>
+                                                                <td>
+                                                                    <div className="result">
+                                                                        sdfsdfdsf
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="period">
+                                                                    101720221827
+                                                                </td>
+                                                                <td className="period">
+                                                                    8887
+                                                                </td>
+                                                                <td className="number">
+                                                                    0
+                                                                </td>
+                                                                <td>
+                                                                    <div className="result">
+                                                                        <span className="result-bg"></span>
+                                                                        <span className="result-bg"></span>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td className="period">
+                                                                    101720221827
+                                                                </td>
+                                                                <td className="period">
+                                                                    8887
+                                                                </td>
+                                                                <td className="number">
+                                                                    0
+                                                                </td>
+                                                                <td>
+                                                                    <div className="result">
+                                                                        sdfsdfdsf
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            {/* <div className="continuous-item">
                                                 <div className="continuous-num">3</div>
                                                 <div className="continuous-num"></div>
                                                 <div className="continuous-num"></div>
                                                 <div className="continuous-num">5</div>
                                                 <div className="continuous-num">6</div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className={toggleState === 2 ? "fastparity-panel active" : "fastparity-panel"}>

@@ -23,7 +23,6 @@ export default function Home() {
       <TopRatedGames></TopRatedGames>
       <LatestBet></LatestBet>
       <RecommendedGames></RecommendedGames>
-      
     </main>
   );
 }

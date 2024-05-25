@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import AccountModal from '../components/AccountModal';
 export default function Header() {
   const [refeActive, setRefeActive] = useState(false);
   const refeToggle = () => {
@@ -43,6 +44,15 @@ export default function Header() {
     setIsResetPopup(true);
     setIsSigninPopup(false);
     setIsSignupPopup(false);
+  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
     return (
       <>
@@ -114,10 +124,10 @@ export default function Header() {
                   <div className="user-dropdowen">
                     <ul>
                       <li>
-                        <a href="#">Account</a>
+                        <Link href="#" onClick={openModal}>Account</Link>
                       </li>
                       <li>
-                        <a href="#">Log out</a>
+                        <Link href="#">Log out</Link>
                       </li>
                     </ul>
                   </div>
@@ -241,6 +251,7 @@ export default function Header() {
           </div>
         </div>
         )}
+        <AccountModal isOpen={isModalOpen} onClose={closeModal}></AccountModal>
       </>
     );
 }

@@ -16,49 +16,49 @@ const Table = ({}) =>{
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="game">
+                            <td className="game">
                                 <Image width={70} height={70} className="w-full game-icon" src={'/assets/images/game-icon.png'} alt=""></Image>
-                                <div class="name">Money Minter Bonus Buy</div>
+                                <div className="name">Money Minter Bonus Buy</div>
                             </td>
                             <td>
                                 <Link href='#' className="user-info">
-                                    <div class="name">VIP 12</div>
+                                    <div className="name">VIP 12</div>
                                 </Link>
                             </td>
                             <td>
-                                <div class="coin notranslate">
-                                    <div class="amount amount-str">3000.00</div>
+                                <div className="coin notranslate">
+                                    <div className="amount amount-str">3000.00</div>
                                     <Image width={100} height={100} className="coin-icon" src={'/assets/images/vnd-icon.png'} alt=""></Image>
                                 </div>
                             </td>
                             <td>0.00x</td>
-                            <td class="profitline lose">
-                                <div class="has-sign">
-                                    <div class="amount amount-str">-3000.00</div>
+                            <td className="profitline lose">
+                                <div className="has-sign">
+                                    <div className="amount amount-str">-3000.00</div>
                                     <Image width={100} height={100} className="coin-icon" src={'/assets/images/vnd-icon.png'} alt=""></Image>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td class="game">
+                            <td className="game">
                                 <Image width={70} height={70} className="w-full game-icon" src={'/assets/images/game-icon.png'} alt=""></Image>
-                                <div class="name">Money Minter Bonus Buy</div>
+                                <div className="name">Money Minter Bonus Buy</div>
                             </td>
                             <td>
                                 <Link href='#' className="user-info">
-                                    <div class="name">VIP 12</div>
+                                    <div className="name">VIP 12</div>
                                 </Link>
                             </td>
                             <td>
-                                <div class="coin notranslate">
-                                    <div class="amount amount-str">3000.00</div>
+                                <div className="coin notranslate">
+                                    <div className="amount amount-str">3000.00</div>
                                     <Image width={100} height={100} className="coin-icon" src={'/assets/images/vnd-icon.png'} alt=""></Image>
                                 </div>
                             </td>
                             <td>0.00x</td>
-                            <td class="profitline lose win">
-                                <div class="has-sign">
-                                    <div class="amount amount-str">-3000.00</div>
+                            <td className="profitline lose win">
+                                <div className="has-sign">
+                                    <div className="amount amount-str">-3000.00</div>
                                     <Image width={100} height={100} className="coin-icon" src={'/assets/images/vnd-icon.png'} alt=""></Image>
                                 </div>
                             </td>
