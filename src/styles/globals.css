@@ -189,6 +189,8 @@ body.scroll{overflow-y: hidden;}
 .header-right .header-search .search-btn svg path{stroke: var(--pra-color);}
 .header-right .anchor-button{margin-right: 20px; background-image: conic-gradient(from 1turn, rgba(88, 175, 16, 1), rgba(29, 128, 58, 1));}
 .header-right .anchor-button:last-child{margin-right: 0}
+.mobile-sticky-links{display: none;}
+
 
 .login-popup .game-popup-wrapper{width: 450px; padding: 20px;}
 .login-popup .game-popup-wrapper .gamexxsheading{color: var(--white-color); font-weight: 600; margin-bottom: 20px;}
@@ -493,8 +495,118 @@ body.scroll{overflow-y: hidden;}
 .accont-popup .account-list ul li a .fill path{fill: var(--white-color);}
 .accont-popup .account-list ul li:last-child{border: 0;}
 
-@media only screen and (max-width: 767px){
+
+@media screen and (min-width: 768px) and (max-width: 1499px) {
+.fastparity-bet-box .fastparity-bet-amount, .fastparity-bet-box .fastparity-bet-amount{width: 100%;}
+}
+
+@media only screen and (max-width: 1499px){
 .container{padding: 0 15px;}
+.header-logo{width: 160px;}
+.homebanner-right{position: absolute; right: 0;}
+.fastparity-bet .fastparity-bet-left, .fastparity-bet .fastparity-bet-right{width: 48%;}
+.search-main .result-card{grid-template-columns: repeat(5, 1fr);}
+}
+@media only screen and (max-width: 1199px){
+.container{max-width: 100%;}
+.game-popup{z-index: 1234;}
+.Recentbox{padding: 0;}
+.header-logo{width: 120px; margin-right: 0;}
+.header-right{width: auto; gap: 10px;}
+.header-right .anchor-button{margin-right: 0;}
+.header-right .header-search, .user-right-box, .amount-tag{display: none;}
+.header-menu{width: 100%; display: none; position: fixed; inset: 0 0 76px; z-index: 999; background: var(--bg-color); overflow: auto;}
+.header-menu .menu{align-items: center; flex-wrap: wrap; padding: 5px 20px;}
+.header-menu .menu li{width: 100%; margin-right: 0; border-bottom: 1px solid #DADADA;}
+.header-menu .menu li a{font-size: 14px; display: block; padding: 15px 10px;}
+.header-menu.active{display: block;}
+.header-menu .sub-menu{width: 100%; top: 0; padding: 0px; position: relative;}
+.header-menu .menu li> .sub-menu li a{border-bottom: 0;}
+.user-right-box{display: none;width: 100%; position: fixed; inset: 0 0 76px; z-index: 999; background: var(--bg-color); overflow: auto; align-items: center; align-content: flex-start; flex-wrap: wrap; height: auto; padding: 20px;}
+.user-right-box .user-dropdowen{width: 100%; display: block; position: relative; top: 15px;}
+.user-right-box .profile-dropdowen{display: none;}
+.user-right-box.active{display: flex;}
+
+.mobile-sticky-links{display: block;position: fixed; bottom: 0; left: 0; z-index: 123; right: 0; background: var(--card-color);box-shadow: 0 4px 30px #00000024; border-radius: 12px 12px 0 0;}
+.mobile-sticky-links ul{display: flex; justify-content: space-between; list-style: none; padding: 0 10px; margin: 0;}
+.mobile-sticky-links ul li{font-size: 11px; font-weight: 600; color: var(--white-color);}
+.mobile-sticky-links ul li a{color: var(--light-gray-color); text-align: center; padding: 15px 10px; display: block; text-decoration: none;}
+.mobile-sticky-links ul li a .icon{display: flex; height: 24px; align-items: center; justify-content: center; margin-bottom: 7px;}
+.mobile-sticky-links ul li a .icon svg{width: 20px; margin: 0 auto;}
+.mobile-sticky-links ul li .toggle-menu .close-icon{display: none;}
+.mobile-sticky-links ul li .toggle-menu .close-icon svg{width: 16px;}
+.mobile-sticky-links ul li .toggle-menu .close-icon svg path{fill: #7d7d7d; stroke: #7d7d7d;}
+.mobile-sticky-links ul li a .icon .feather-user{stroke: #7d7d7d;}
+.mobile-sticky-links ul li .account-price .icon{width: 30px; height: 24px;}
+.mobile-sticky-links ul li .toggle-menu.active .open-icon{display: none;}
+.mobile-sticky-links ul li .toggle-menu.active .close-icon{display: block;}
+
+.accont-popup .user-right-box{display: flex; position: relative; background: transparent;}
+.footer{padding-bottom: 80px;}
+}
+
+@media only screen and (max-width: 991px){
+.homebanner-right{display: none;}
+.search-main .result-card{grid-template-columns: repeat(4, 1fr);}
+}
+
+
+@media only screen and (max-width: 767px){
+.gameheading{font-size: 40px;}
+.gamelgheading{font-size: 28px;}
+.gamemdheading{font-size: 22px;}
+.gamesmheading{font-size: 18px;}
+.gamexsheading{font-size: 16px;}
+.gamexxsheading{font-size: 14px;}
+.padding-tb-lg{padding: 30px 0;}
+.anchor-button, .anchor-pink-button{font-size: 12px; padding: 10px 8px;}
+.custom-tab .tabs{font-size: 12px; height: 40px; padding: 8px 5px;}
+.table{table-layout: auto;}
+.table tbody tr td .name, .latest-bet-box .table .coin .amount-str{font-size: 12px;}
+.game-popup-wrapper, .login-popup .game-popup-wrapper, .accont-popup .game-popup-wrapper{width: 95%;}
+.breadcrumb-list a{font-size: 12px;}
+
+
+.home-banner{height: auto; min-height: auto;}
+.homebanner-left{width: 100%; padding: 20px 20px 20px 0;}
+.homebanner-left .homebanner-content{margin-top: 20px;}
+.homebanner-left .homebanner-content .anchor-button{min-width: 120px;}
+.login-list li a{width: 35px; height: 35px;}
+.search-main{padding: 20px 0;}
+.search-main .search-icon{width: 30px;}
+.search-main .search-icon svg{width: 12px; height: 12px;}
+.search-main .search-control{font-size: 12px; padding: 0 10px 0 0;}
+.search-main .clear-btn{width: 12px; height: 12px;}
+.search-main .clear-btn:before, .search-main .clear-btn:after{height: 12px;}
+.search-main .search-cancel{width: 60px; font-size: 12px;}
+.search-main .result-card{grid-template-columns: repeat(2, 1fr);}
+.login-popup .other-sign-wrap{margin-top: 30px;}
+.login-popup .create-txt .create-btn{font-size: 14px;}
+.login-popup .other-sign-wrap p::before, .login-popup .other-sign-wrap p::after{width: 25%;}
+
+
+
+.multiple-main{grid-template-columns: repeat(2, 1fr); gap: 20px 0;}
+.Recentbox{padding: 0;}
+.latest-bet .custom-tab{width: 100%; margin-bottom: 15px;}
+.latest-bet .custom-tab .tabs{width: calc(100%/3);}
+.latest-bet-box{padding: 10px;}
+.fastparity-left{width: 100%; flex: auto; -ms-flex: auto;} 
+.fastparity-right{-webkit-flex-basis: auto;-ms-flex-preferred-size: auto;flex-basis: auto;}
+.fastparity-left .fastparity-view-mid{width: 100%;}
+.fastparity-left .fastparity-view-top{padding: 10px;}
+.fastparity-left .fastparity-join .anchor-button{height: 80px;}
+.fastparity-num-list .fastparity-num-item{font-size: 12px; padding: 5px;}
+.fastparity-panel-box .continuous-main{margin: 8px 10px;}
+.continuous-main .table th, .continuous-main .table td{font-size: 12px;}
+.continuous-main .table .result .result-bg{width: 15px; height: 15px;}
+.probability-main{overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 10px;}
+.fastparity-panel-box .probability-grid .probability-num, .fastparity-panel-box .probability-table td .table-num{width: 20px; height: 20px; font-size: 12px; line-height: 20px;}
+.fastparity-bet{padding: 10px;}
+.fastparity-bet .fastparity-bet-left, .fastparity-bet .fastparity-bet-right{width: 100%;}
+.fastparity-bet-box .fastparity-bet-amount .bet-btn{font-size: 16px;}
+
+.footer{padding-bottom: 60px;}
 .footer-top{grid-template-columns: repeat(1,1fr); gap: 15px;}
 .footer-col{padding-bottom: 15px; border-bottom: 1px solid var(--pra-color);}
 .footer-col .gamexxsheading{margin-bottom: 0;}

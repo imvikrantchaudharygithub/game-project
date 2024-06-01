@@ -54,6 +54,15 @@ export default function Header() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const [menuActive, setMenuActive] = useState(false);
+  const toggleMenu = () => {
+    setMenuActive(!menuActive);
+  };
+  // const [accountActive, setAccountMenuActive] = useState(false);
+  // const accountMenu = () => {
+  //   setAccountMenuActive(!accountActive);
+  // };
+  
     return (
       <>
         <section className="header">
@@ -64,7 +73,7 @@ export default function Header() {
                   <Image width={942} height={248} className="w-full" src={'/assets/images/header-logo.png'} alt=""></Image>
                 </Link>
               </div>
-              <div className="header-menu">
+              <div className={menuActive ? 'header-menu active' : 'header-menu'}>
                 <ul className="menu">
                   <li>
                     <Link href='#'>
@@ -252,6 +261,45 @@ export default function Header() {
         </div>
         )}
         <AccountModal isOpen={isModalOpen} onClose={closeModal}></AccountModal>
+        <section className="mobile-sticky-links">
+          <ul>
+            <li>
+              <Link href='javascript:void(0)' className={menuActive ? 'toggle-menu active' : 'toggle-menu'} onClick={toggleMenu}>
+                <div className="icon open-icon">
+                  <svg _ngcontent-ng-c3384484568="" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384484568="" d="M1 7H19" stroke="#58595B" stroke-linecap="round" stroke-linejoin="round"></path><path _ngcontent-ng-c3384484568="" d="M1 1H19" stroke="#58595B" stroke-linecap="round" stroke-linejoin="round"></path><path _ngcontent-ng-c3384484568="" d="M1 13H19" stroke="#58595B" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+                <div className="icon close-icon">
+                  <svg _ngcontent-ng-c3384484568="" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384484568="" d="M20.9615 2.86865L20.9614 2.86858L20.9531 2.87687L13.2675 10.5892L12.8105 11.0479L13.2674 11.5067L20.9416 19.2127C21.1616 19.4534 21.2816 19.7701 21.2758 20.0977C21.27 20.4286 21.1363 20.7439 20.9036 20.9773C20.671 21.2107 20.3576 21.344 20.0295 21.3498C19.7049 21.3555 19.3902 21.236 19.1505 21.0156L11.4713 13.3097L11.0111 12.8479L10.5507 13.3095L2.86624 21.0129C2.62651 21.2334 2.31181 21.353 1.98711 21.3472C1.65903 21.3414 1.3456 21.2081 1.11297 20.9748C0.880274 20.7413 0.74663 20.426 0.74081 20.0951C0.73505 19.7676 0.854928 19.4509 1.07487 19.2103L8.75412 11.5069L9.21135 11.0482L8.75435 10.5893L1.07129 2.87446L1.06309 2.86622L1.05459 2.85828C0.929846 2.74168 0.829673 2.60095 0.760152 2.44443C0.690629 2.28791 0.653214 2.11886 0.650198 1.9474C0.647182 1.77593 0.678629 1.60566 0.742613 1.44675C0.806593 1.28785 0.901769 1.14365 1.02236 1.02268C1.14294 0.901719 1.28646 0.806474 1.4443 0.742521C1.60213 0.678569 1.77112 0.647188 1.94119 0.650198C2.11127 0.653208 2.27906 0.69055 2.43457 0.760057C2.59008 0.829565 2.73018 0.929844 2.84645 1.05502L2.85426 1.06342L2.86235 1.07154L10.5505 8.78386L11.0108 9.24557L11.4711 8.78394L19.1619 1.07162L19.1619 1.07169L19.1696 1.0637C19.2868 0.94208 19.4269 0.845209 19.5816 0.778636C19.7363 0.712065 19.9026 0.677094 20.0708 0.675708C20.2389 0.674322 20.4058 0.706548 20.5615 0.770556C20.7173 0.834568 20.8589 0.929111 20.9781 1.04877C21.0972 1.16843 21.1916 1.31082 21.2555 1.46768C21.3194 1.62454 21.3515 1.79267 21.3499 1.96223C21.3484 2.13179 21.3132 2.29929 21.2465 2.45494C21.1797 2.61059 21.0828 2.75121 20.9615 2.86865Z" fill="#F04E30" stroke="white" stroke-width="1.3"></path></svg>
+                </div>
+                Menu
+              </Link>
+            </li>
+            <li>
+              <Link href='javascript:void(0)'>
+                <div className="icon">
+                  <svg _ngcontent-ng-c3384484568="" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384484568="" d="M10.3344 19.6675C15.4896 19.6675 19.6688 15.4884 19.6688 10.3332C19.6688 5.17793 15.4896 0.998779 10.3344 0.998779C5.17915 0.998779 1 5.17793 1 10.3332C1 15.4884 5.17915 19.6675 10.3344 19.6675Z" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path _ngcontent-ng-c3384484568="" d="M22.0014 22.0014L16.9258 16.9258" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+                Search
+              </Link>
+            </li>
+            <li>
+              <Link href='javascript:void(0)' onClick={userToggle}>
+                <div className="icon">
+                  <svg className="feather feather-user" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                Account
+              </Link>
+            </li>
+            <li>
+              <Link href='javascript:void(0)' className="account-price">
+                <div className="icon">
+                  <Image width={48} height={48} src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
+                </div>
+                3000
+              </Link>
+            </li>
+          </ul>
+        </section>
       </>
     );
 }

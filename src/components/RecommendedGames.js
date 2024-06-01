@@ -10,16 +10,24 @@ const RecommendedGames = ({}) =>{
 		slidesToScroll: 1,
 		responsive: [
 			{
+				breakpoint: 1199,
+				settings: {
+                    arrows: true,
+					slidesToShow: 4.2,
+				}
+			},
+			{
 				breakpoint: 991,
 				settings: {
-					slidesToShow: 2.2,
+                    arrows: true,
+					slidesToShow: 3.2,
 				}
 			},
 			{
 				breakpoint: 767,
 				settings: {
 					arrows: true,
-					slidesToShow: 1.5,
+					slidesToShow: 3.2,
 					slidesToScroll: 1,
 				}
 			},
@@ -27,7 +35,7 @@ const RecommendedGames = ({}) =>{
 				breakpoint: 379,
 				settings: {
 					arrows: true,
-					slidesToShow: 1.2,
+					slidesToShow: 2.2,
 					slidesToScroll: 1,
 				}
 			}

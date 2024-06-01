@@ -15,17 +15,25 @@ const RecentBigWins = ({}) =>{
 		slidesToShow: 12,
 		slidesToScroll: 1,
 		responsive: [
+            {
+				breakpoint: 1199,
+				settings: {
+                    arrows: true,
+					slidesToShow:6.5,
+				}
+			},
 			{
 				breakpoint: 991,
 				settings: {
-					slidesToShow: 2.2,
+                    arrows: true,
+					slidesToShow: 5.5,
 				}
 			},
 			{
 				breakpoint: 767,
 				settings: {
 					arrows: true,
-					slidesToShow: 1.5,
+					slidesToShow: 4.5,
 					slidesToScroll: 1,
 				}
 			},
@@ -33,7 +41,7 @@ const RecentBigWins = ({}) =>{
 				breakpoint: 379,
 				settings: {
 					arrows: true,
-					slidesToShow: 1.2,
+					slidesToShow: 3.5,
 					slidesToScroll: 1,
 				}
 			}
