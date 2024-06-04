@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { setToken,clearToken } from '../slices/tokenSlice';
 import { getToken ,setToken as setLocaltoken ,clearTokenlocal} from "../pages/services/tokenservice";
 import { useRouter } from 'next/router';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Header() {
 
@@ -130,13 +131,13 @@ export default function Header() {
                 console.log("user-signin", res.data)
                 setloader(false)
                 signin.resetForm()
-                // toast.success("Sign in Succesfull",{position:"top-right"})
+                toast.success("Sign in Succesfull",{position:"top-right"})
                 setLocaltoken(res?.data?.token)
                 dispatch(setToken(res?.data?.token));
                 togglePopup()
                 // router.push(`/account`);
             }).catch((err:any)=>{
-                // toast.error(err.response.data.message,{position:"top-right"})
+                toast.error(err.response.data.message,{position:"top-right"})
              setloader(false)
              console.log("signin api err",err)
             })
@@ -304,7 +305,7 @@ const logout=()=>{
                       </div>
                       <div className="forgot-btn" onClick={resetPopup}>Forgot your password?</div>
                       <div className="form-group">
-                        <button type="submit" className="anchor-button">Sign In</button>
+                        <button type="submit" className="anchor-button" disabled={loader}>{loader? "Loading....":"Sign In"} </button>
                       </div>
                     </form>
                     <div className="create-txt">
@@ -370,7 +371,8 @@ const logout=()=>{
                     </form>
                     <div className="create-txt">
                       <p>Already have an account?</p>
-                      <div className="create-btn" onClick={signinPopup}>Sign in</div>
+                      <div className="create-btn" onClick={signinPopup}> Sign in</div>
+                      
                     </div>
                   </div>
                 </div>

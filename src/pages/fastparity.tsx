@@ -4,6 +4,10 @@ import { SetStateAction, useState } from "react";
 import Breadcrumb from '../components/Breadcrumb';
 import React from "react";
 export default function fastparity() {
+    const number =[{value:0,label:"0"},
+        {value:1,label:"1"}, {value:2,label:"2"},{value:3,label:"3"}, {value:4,label:"4"},
+        {value:5,label:"5"}, {value:6,label:"6"}, {value:7,label:"7"},{value:8,label:"8"},{value:9,label:"9"}
+    ]
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index: SetStateAction<number>) =>{
         setToggleState(index);
@@ -20,6 +24,10 @@ export default function fastparity() {
   
   const dec = () => {
     setCount(count - 1);
+  }
+
+  const getSelectednumber=(numvalue:any)=>{
+    console.log("selected number value",numvalue)
   }
     return (
       <>
@@ -62,36 +70,11 @@ export default function fastparity() {
                                         </div>
                                     </div>
                                     <div className="fastparity-num-list d-grid">
-                                        <button className="fastparity-num-item hovertime disabled">
-                                            1
+                                        {number?.map((num:any)=>(
+                                        <button key={num.value} onClick={()=>getSelectednumber(num?.value)} className="fastparity-num-item hovertime disabled">
+                                            {num?.label}
                                         </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            2
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            3
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            4
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            5
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            1
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            2
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            3
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            4
-                                        </button>
-                                        <button className="fastparity-num-item hovertime">
-                                            5
-                                        </button>
+                                       ))}
                                     </div>
                                 </div>
                                 <div className="fastparity-view-bottom">
