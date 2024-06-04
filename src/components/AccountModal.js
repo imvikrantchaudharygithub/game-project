@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from 'react';
-const AccountModal = ({ isOpen, onClose }) => {
+const AccountModal = ({ isOpen, onClose ,userdata}) => {
       
     if (!isOpen) return null;
     return (
@@ -16,12 +16,12 @@ const AccountModal = ({ isOpen, onClose }) => {
                     <Image width={40} height={40} className="w-full" src={'/assets/images/user.png'} alt=""></Image>
                   </div>
                   <div className="user-name-box">
-                    <div className="user-name">Ashish Sharma</div>
+                    <div className="user-name">{userdata?.username}</div>
                   </div>
                 </div>
                 <div className="user-amount d-flex align">
                     <div className="gamexxsheading">Amount</div>
-                    <p>2,000,00,00</p>
+                    <p>{userdata?.balance}</p>
                 </div>
                 <div className="account-list">
                     <div className="gamexsheading">Account</div>

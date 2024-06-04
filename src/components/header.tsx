@@ -1,8 +1,29 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState, } from "react";
 import AccountModal from '../components/AccountModal';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { apipost,get } from "../pages/services/apiService";
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { setToken,clearToken } from '../slices/tokenSlice';
+import { getToken ,setToken as setLocaltoken ,clearTokenlocal} from "../pages/services/tokenservice";
+import { useRouter } from 'next/router';
+
 export default function Header() {
+
+  const dispatch = useAppDispatch();
+  const isTokenSet = useAppSelector((state:any) => state.token.isTokenSet);
+  const router = useRouter();
+  useEffect(() => {
+      const token = getToken()
+      if (token && !isTokenSet) {
+        dispatch(setToken(token));
+      }
+      console.log("mytoken",isTokenSet,token)
+    }, [dispatch, isTokenSet]);
+    const [loader, setloader] = useState(false)
+  
   const [refeActive, setRefeActive] = useState(false);
   const refeToggle = () => {
     setRefeActive(!refeActive);
@@ -62,6 +83,113 @@ export default function Header() {
   // const accountMenu = () => {
   //   setAccountMenuActive(!accountActive);
   // };
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+      if(isTokenSet){
+      getuserData()
+      }
+      // console.log("userid",id)
+     
+
+  }, [isTokenSet]);
+
+  const getuserData = async () => {
+      await get(`/getuserdata`).then((res: any) => {
+          console.log("userdata", res.data)
+          setUserData(res?.data?.user)
+          // setEditvalue(res?.data?.user)
+      }).catch((err: any) => {
+          console.log(err)
+      })
+  }
+  // const setEditvalue =(data:any)=>{
+  //     formik.setFieldValue('name',data?.username)
+  //     formik.setFieldValue('email',data?.email)
+  //     formik.setFieldValue('phone',data?.phone)
+  // }
+
+
+  const signin = useFormik({
+    initialValues: {
+        email: '',
+        password: ''
+    },
+    validationSchema: Yup.object({
+        email: Yup.string().email('Invalid email address').required('Required'),
+        password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required')
+    }),
+    onSubmit: async(values: any) => {
+        setloader(true)
+        const payload ={
+            email:values.email,
+            password:values.password
+        }
+        try{
+            await apipost("/signin",payload).then((res:any)=>{
+                console.log("user-signin", res.data)
+                setloader(false)
+                signin.resetForm()
+                // toast.success("Sign in Succesfull",{position:"top-right"})
+                setLocaltoken(res?.data?.token)
+                dispatch(setToken(res?.data?.token));
+                togglePopup()
+                // router.push(`/account`);
+            }).catch((err:any)=>{
+                // toast.error(err.response.data.message,{position:"top-right"})
+             setloader(false)
+             console.log("signin api err",err)
+            })
+         }catch(err){
+            setloader(false)
+             console.log("user-sigin", err)
+         }
+    },
+});
+const singup = useFormik ({
+  initialValues: {
+      name: '',
+      email: '',
+      phone: '',
+      password: ''
+  },
+  validationSchema: Yup.object({
+      name: Yup.string().required('Required'),
+      email: Yup.string().email('Invalid email address').required('Required'),
+      phone: Yup.string().matches(/^\d{10}$/, 'Invalid phone number').required('Required'),
+      password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required')
+  }),
+  onSubmit: async(values: any) => {
+      setloader(true)
+      console.log("form values", values)
+      const payload ={
+          username:values.name,
+          email:values.email,
+          phone:values.phone,
+          password:values.password
+      }
+      try{
+     await apipost("/signup",payload).then((res:any)=>{
+         console.log("user-signup", res.data)
+         setloader(false)
+         singup.resetForm()
+         setLocaltoken(res?.data?.token)
+         dispatch(setToken(res?.data?.token));
+         togglePopup()
+     }).catch((err:any)=>{
+     
+      setloader(false)
+      console.log("sign api err",err)
+     })
+  }catch(err){
+      console.log("user-signup", err)
+  }
+  },
+});
+const logout=()=>{
+  dispatch(clearToken());
+  clearTokenlocal()
+}
   
     return (
       <>
@@ -113,20 +241,21 @@ export default function Header() {
                     </svg>
                   </button>
                 </div>
-                <button className="anchor-button" onClick={signInPopup}>Sign in</button>
-                <button className="anchor-button" onClick={signUPPopup}>Sign up</button>
-                <div className={userActive ? 'user-right-box active' : 'user-right-box'}>
+               {!isTokenSet && ( <button className="anchor-button" onClick={signInPopup}>Sign in</button>)}
+               {!isTokenSet && ( <button className="anchor-button" onClick={signUPPopup}>Sign up</button>)}
+               {isTokenSet && ( <div className={userActive ? 'user-right-box active' : 'user-right-box'}>
                   <div className="user-img">
                     <Image width={40} height={40} className="w-full" src={'/assets/images/user.png'} alt=""></Image>
                   </div>
-                  <div className="user-name-box">
+                
+                      <div className="user-name-box">
                     <span className="profile-dropdowen" onClick={userToggle}>
                       <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
                     </span>
 
-                    <div className="user-name">Ashish Sharma</div>
+                    <div className="user-name">{userData?.username}</div>
                     {/* <div className="user-designation">Sales Representative</div> */}
                   </div>
 
@@ -136,19 +265,21 @@ export default function Header() {
                         <Link href="#" onClick={openModal}>Account</Link>
                       </li>
                       <li>
-                        <Link href="#">Log out</Link>
+                        <button onClick={logout} >Log out</button>
                       </li>
                     </ul>
                   </div>
-                </div>
+                </div>)}
+                {isTokenSet && ( 
                 <div className="amount-tag">
                   <div className="amount-icon">
                     <Image width={48} height={48} className="icon" src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
                   </div>
                   <div className="amountnum">
-                    3000
+                  {userData?.balance}
                   </div>
                 </div>
+              )}
               </div>
             </div>
           </div>
@@ -164,12 +295,12 @@ export default function Header() {
                 <div className="game-signin">
                   <div className="gamexxsheading">Sign In</div>
                   <div className="form-box">
-                    <form>
+                    <form onSubmit={signin.handleSubmit}>
                       <div className="form-group">
-                        <input type="email" className="form-control" placeholder="Email"></input>
+                        <input type="email" name="email" value={signin.values.email} onChange={signin.handleChange} className="form-control" placeholder="Email"></input>
                       </div>
                       <div className="form-group">
-                        <input type="password" className="form-control" placeholder="Login Password"></input>
+                        <input type="password" name="password" value={signin.values.password} onChange={signin.handleChange} className="form-control" placeholder="Login Password"></input>
                       </div>
                       <div className="forgot-btn" onClick={resetPopup}>Forgot your password?</div>
                       <div className="form-group">
@@ -206,15 +337,18 @@ export default function Header() {
                 <div className="game-signin">
                   <div className="gamexxsheading">Reset Password</div>
                   <div className="form-box">
-                    <form>
+                    <form onSubmit={singup.handleSubmit}>
                       <div className="form-group">
-                        <input type="text" className="form-control" placeholder="User Name"></input>
+                        <input type="text" name="name" value={singup.values.name} onChange={singup.handleChange}  className="form-control" placeholder="User Name"></input>
                       </div>
                       <div className="form-group">
-                        <input type="email" className="form-control" placeholder="Email"></input>
+                        <input type="phone" name="phone" value={singup.values.phone} onChange={singup.handleChange}  className="form-control" placeholder="Phone"></input>
                       </div>
                       <div className="form-group">
-                        <input type="password" className="form-control" placeholder="Login Password"></input>
+                        <input type="email" name="email" value={singup.values.email} onChange={singup.handleChange} className="form-control" placeholder="Email"></input>
+                      </div>
+                      <div className="form-group">
+                        <input type="password" name="password" value={singup.values.password} onChange={singup.handleChange}  className="form-control" placeholder="Login Password"></input>
                       </div>
                       <div className={refeActive ? 'form-group refer-title active' : 'form-group refer-title'}>
                         <p onClick={refeToggle}>Enter Referral/Promo Code <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></p>
@@ -260,7 +394,7 @@ export default function Header() {
           </div>
         </div>
         )}
-        <AccountModal isOpen={isModalOpen} onClose={closeModal}></AccountModal>
+        <AccountModal isOpen={isModalOpen} onClose={closeModal} userdata={userData}></AccountModal>
         <section className="mobile-sticky-links">
           <ul>
             <li>
@@ -295,7 +429,7 @@ export default function Header() {
                 <div className="icon">
                   <Image width={48} height={48} src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
                 </div>
-                3000
+               {userData?.balance}
               </Link>
             </li>
           </ul>
