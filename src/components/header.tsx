@@ -34,38 +34,28 @@ export default function Header() {
     setUserActive(!userActive);
   };
   const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [isSigninPopup, setIsSigninPopup] = useState(true);
-  const [isSignupPopup, setIsSignupPopup] = useState(false);
-  const [isResetPopup, setIsResetPopup] = useState(false);
+  const [isSigninPopup, setIsSigninPopup] = useState(0);
+  // const [isSignupPopup, setIsSignupPopup] = useState(0);
+  // const [isResetPopup, setIsResetPopup] = useState(false);
   const togglePopup = () => {
-    setIsPopupVisible(!isPopupVisible);
-  };
-
-  
-  const signInPopup = () => {
-    setIsPopupVisible(!isPopupVisible);
-    setIsSigninPopup(true);
-    setIsSignupPopup(false);
+    setIsPopupVisible(false);
   };
   const signUPPopup = () => {
-    setIsPopupVisible(!isPopupVisible);
-    setIsSignupPopup(true);
-    setIsSigninPopup(false);
+    setIsPopupVisible(true);
+    setIsSigninPopup(3)
   };
   const signinPopup = () => {
-    setIsSigninPopup(true);
-    setIsResetPopup(false);
-    setIsSignupPopup(false);
+    setIsPopupVisible(true);
+    setIsSigninPopup(1)
   };
-  const signupPopup = () => {
-    setIsSignupPopup(true);
-    setIsResetPopup(false);
-    setIsSigninPopup(false);
-  };
+  // const signupPopup = () => {
+  //   setIsSignupPopup(true);
+  //   setIsResetPopup(false);
+  //   setIsSigninPopup(false);
+  // };
   const resetPopup = () => {
-    setIsResetPopup(true);
-    setIsSigninPopup(false);
-    setIsSignupPopup(false);
+    setIsPopupVisible(true);
+    setIsSigninPopup(2)
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -242,15 +232,16 @@ const logout=()=>{
                     </svg>
                   </button>
                 </div>
-               {!isTokenSet && ( <button className="anchor-button" onClick={signInPopup}>Sign in</button>)}
+               {!isTokenSet && ( <button className="anchor-button" onClick={signinPopup}>Sign in</button>)}
                {!isTokenSet && ( <button className="anchor-button" onClick={signUPPopup}>Sign up</button>)}
-               {isTokenSet && ( <div className={userActive ? 'user-right-box active' : 'user-right-box'}>
+               {isTokenSet && ( <div className={userActive ? 'user-right-box active' : 'user-right-box'} onClick={openModal}>
                   <div className="user-img">
                     <Image width={40} height={40} className="w-full" src={'/assets/images/user.png'} alt=""></Image>
                   </div>
                 
                       <div className="user-name-box">
-                    <span className="profile-dropdowen" onClick={userToggle}>
+                        {/* onClick={userToggle} */}
+                    <span className="profile-dropdowen">
                       <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                       </svg>
@@ -263,7 +254,7 @@ const logout=()=>{
                   <div className="user-dropdowen">
                     <ul>
                       <li>
-                        <Link href="#" onClick={openModal}>Account</Link>
+                        <Link href="#" >Account</Link>
                       </li>
                       <li>
                         <button onClick={logout} >Log out</button>
@@ -292,7 +283,7 @@ const logout=()=>{
           <div className="game-popup-wrapper">
             <button className="game-popup-close" onClick={togglePopup}></button>
             <div className="game-popup-body">
-                {isSigninPopup && (
+                {isSigninPopup ==1 && (
                 <div className="game-signin">
                   <div className="gamexxsheading">Sign In</div>
                   <div className="form-box">
@@ -310,12 +301,12 @@ const logout=()=>{
                     </form>
                     <div className="create-txt">
                       <p>New to bc.ai?</p>
-                      <div className="create-btn" onClick={signupPopup}>Create account</div>
+                      <div className="create-btn" onClick={signUPPopup}>Create account</div>
                     </div>
                   </div>
                 </div>
                 )}
-                {isResetPopup && (
+                {isSigninPopup == 2 && (
                 <div className="game-signin">
                   <div className="gamexxsheading">Reset Password</div>
                   <div className="form-box">
@@ -334,9 +325,9 @@ const logout=()=>{
                   </div>
                 </div>
                 )}
-                {isSignupPopup && (
+                {isSigninPopup == 3 && (
                 <div className="game-signin">
-                  <div className="gamexxsheading">Reset Password</div>
+                  <div className="gamexxsheading">Sign Up</div>
                   <div className="form-box">
                     <form onSubmit={singup.handleSubmit}>
                       <div className="form-group">

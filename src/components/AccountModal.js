@@ -45,6 +45,9 @@ const AccountModal = ({ isOpen, onClose ,userdata}) => {
                             </Link> 
                         </li> */}
                     </ul>
+                    <button className="anchor-button anchor-pink-button">
+                        Log Out
+                    </button>
                 </div>
             </div>
           </div>
