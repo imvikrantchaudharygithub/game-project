@@ -532,6 +532,11 @@ body.scroll{overflow-y: hidden;}
 
 @media screen and (min-width: 768px) and (max-width: 1499px) {
 .fastparity-bet-box .fastparity-bet-amount, .fastparity-bet-box .fastparity-bet-amount{width: 100%;}
+.deposit-main{margin: 0 -5px}
+.user-cash-main{padding: 15px;}
+.deposit-main .col{padding: 0 5px}
+.deposit-main .bank-account ul li{align-items: flex-start; gap: 0 15px;}
+.deposit-main .user-pay-text p{width: 100%;}
 }
 
 @media only screen and (max-width: 1499px){
@@ -657,4 +662,13 @@ body.scroll{overflow-y: hidden;}
 .footer-bottom .footer-logo{margin: 0 auto;}
 .footer-content{grid-template-columns: repeat(1, 1fr); text-align: center; gap: 30px;}
 .footer-content .footer-licensed{flex-wrap: wrap; justify-content: center;}
+
+.user-cash-main{padding: 15px;}
+.deposit-tab .tabs .account-icon{width: 24px; height: 24px;}
+.user-cash .custom-tab{margin-bottom: 15px;}
+.deposit-main{gap: 15px 0;}
+.deposit-main .col{width: 100%;}
+.deposit-main .bank-account ul li{align-items: flex-start; gap: 0 15px;}
+.deposit-main .bank-account ul li p{font-size: 14px;}
+.deposit-main .user-pay-text p{width: 100%;}
 }
