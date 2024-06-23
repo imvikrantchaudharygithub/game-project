@@ -1,13 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import Deposit from '../components/Deposit';
 import Withdrawal from '../components/Withdrawal';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+
+
 export default function useraccount() {
+
+    const user = useAppSelector((state:any) => state.user);
+
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index: SetStateAction<number>) => {
         setToggleState(index);
     }
+  
+
     return (
         <>
             <section className="user-cash padding-tb-lg">
@@ -19,12 +28,12 @@ export default function useraccount() {
                     <div className="latest-content">
                         <div className={toggleState === 1 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Deposit></Deposit>
+                                <Deposit userData={user}/>
                             </div>
                         </div>
                         <div className={toggleState === 2 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Withdrawal></Withdrawal>
+                                <Withdrawal userData={user}/>
                             </div>
                         </div>
                     </div>

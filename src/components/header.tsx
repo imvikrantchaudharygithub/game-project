@@ -8,6 +8,8 @@ import { apipost,get } from "../pages/services/apiService";
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { setToken,clearToken } from '../slices/tokenSlice';
 import { getToken ,setToken as setLocaltoken ,clearTokenlocal} from "../pages/services/tokenservice";
+import { setUser, clearUser } from '../slices/userSlice';
+
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -15,6 +17,8 @@ export default function Header() {
 
   const dispatch = useAppDispatch();
   const isTokenSet = useAppSelector((state:any) => state.token.isTokenSet);
+  const user = useAppSelector((state:any) => state.user);
+
   const router = useRouter();
   useEffect(() => {
       const token = getToken()
@@ -79,6 +83,7 @@ export default function Header() {
   useEffect(() => {
       if(isTokenSet){
       getuserData()
+      console.log("userState",user)
       }
       // console.log("userid",id)
      
@@ -89,6 +94,7 @@ export default function Header() {
       await get(`/getuserdata`).then((res: any) => {
           console.log("userdata", res.data)
           setUserData(res?.data?.user)
+          dispatch(setUser({ id: res?.data?.user?._id, amount: res?.data?.user?.balance}));
           // setEditvalue(res?.data?.user)
       }).catch((err: any) => {
           console.log(err)
