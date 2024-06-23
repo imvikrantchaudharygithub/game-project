@@ -3,7 +3,22 @@ import Image from "next/image";
 import { SetStateAction, useState } from "react";
 import Breadcrumb from '../components/Breadcrumb';
 import React from "react";
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+
+import {
+    openSignIn,
+    closeSignIn,
+    openSignUp,
+    closeSignUp,
+    openUserInfo,
+    closeUserInfo,
+    openResetPassword,
+    closeResetPassword,
+    closeParentPopup,
+  } from '../slices/popupSlice';
 export default function fastparity() {
+    const dispatch = useAppDispatch();
+
     const number =[{value:0,label:"0"},
         {value:1,label:"1"}, {value:2,label:"2"},{value:3,label:"3"}, {value:4,label:"4"},
         {value:5,label:"5"}, {value:6,label:"6"}, {value:7,label:"7"},{value:8,label:"8"},{value:9,label:"9"}
@@ -61,7 +76,7 @@ export default function fastparity() {
                                             <p>1.95X</p>
                                         </div>
                                         <div className="fastparity-join-box">
-                                            <button className="anchor-button anchor-pink-button">Violet</button>
+                                            <button className="anchor-button anchor-pink-button" >Violet</button>
                                             <p>1.95X</p>
                                         </div>
                                         <div className="fastparity-join-box">

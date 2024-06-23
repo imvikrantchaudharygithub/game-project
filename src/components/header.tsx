@@ -9,16 +9,29 @@ import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { setToken,clearToken } from '../slices/tokenSlice';
 import { getToken ,setToken as setLocaltoken ,clearTokenlocal} from "../pages/services/tokenservice";
 import { setUser, clearUser } from '../slices/userSlice';
-
+import {
+  openSignIn,
+  closeSignIn,
+  openSignUp,
+  closeSignUp,
+  openUserInfo,
+  closeUserInfo,
+  openResetPassword,
+  closeResetPassword,
+  closeParentPopup,
+} from '../slices/popupSlice';
 import { useRouter } from 'next/router';
 import toast, { Toaster } from 'react-hot-toast';
+import Search from "./Search";
 
 export default function Header() {
 
   const dispatch = useAppDispatch();
   const isTokenSet = useAppSelector((state:any) => state.token.isTokenSet);
   const user = useAppSelector((state:any) => state.user);
+  const { parentPopupOpen, signInOpen, signUpOpen, userInfoOpen,resetPasswordOpen } = useAppSelector((state:any) => state.popup);
 
+const[openSearch,setopenSearch]=useState(false)
   const router = useRouter();
   useEffect(() => {
       const token = getToken()
@@ -33,51 +46,13 @@ export default function Header() {
   const refeToggle = () => {
     setRefeActive(!refeActive);
   };
-  const [userActive, setUserActive] = useState(false);
-  const userToggle = () => {
-    setUserActive(!userActive);
-  };
-  const [isPopupVisible, setIsPopupVisible] = useState(false);
-  const [isSigninPopup, setIsSigninPopup] = useState(0);
-  // const [isSignupPopup, setIsSignupPopup] = useState(0);
-  // const [isResetPopup, setIsResetPopup] = useState(false);
-  const togglePopup = () => {
-    setIsPopupVisible(false);
-  };
-  const signUPPopup = () => {
-    setIsPopupVisible(true);
-    setIsSigninPopup(3)
-  };
-  const signinPopup = () => {
-    setIsPopupVisible(true);
-    setIsSigninPopup(1)
-  };
-  // const signupPopup = () => {
-  //   setIsSignupPopup(true);
-  //   setIsResetPopup(false);
-  //   setIsSigninPopup(false);
-  // };
-  const resetPopup = () => {
-    setIsPopupVisible(true);
-    setIsSigninPopup(2)
-  };
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+ 
   const [menuActive, setMenuActive] = useState(false);
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
-  // const [accountActive, setAccountMenuActive] = useState(false);
-  // const accountMenu = () => {
-  //   setAccountMenuActive(!accountActive);
-  // };
+ 
   const [userData, setUserData] = useState();
 
   useEffect(() => {
@@ -130,7 +105,7 @@ export default function Header() {
                 toast.success("Sign in Succesfull",{position:"top-right"})
                 setLocaltoken(res?.data?.token)
                 dispatch(setToken(res?.data?.token));
-                togglePopup()
+                dispatch(closeParentPopup())
                 // router.push(`/account`);
             }).catch((err:any)=>{
                 toast.error(err.response.data.message,{position:"top-right"})
@@ -172,7 +147,7 @@ const singup = useFormik ({
          singup.resetForm()
          setLocaltoken(res?.data?.token)
          dispatch(setToken(res?.data?.token));
-         togglePopup()
+        dispatch(closeParentPopup())
      }).catch((err:any)=>{
      
       setloader(false)
@@ -187,6 +162,10 @@ const logout=()=>{
   dispatch(clearToken());
   clearTokenlocal()
 }
+
+const handleCloseSearch = () => {
+setopenSearch(false)
+};
   
     return (
       <>
@@ -231,16 +210,17 @@ const logout=()=>{
               </div>
               <div className="header-right d-flex align">
                 <div className="header-search">
-                  <button className="search-btn">
+                  <button className="search-btn" onClick={()=>setopenSearch(true)}>
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         <path d="M18.9999 19L14.6499 14.65" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                   </button>
+                  
                 </div>
-               {!isTokenSet && ( <button className="anchor-button" onClick={signinPopup}>Sign in</button>)}
-               {!isTokenSet && ( <button className="anchor-button" onClick={signUPPopup}>Sign up</button>)}
-               {isTokenSet && ( <div className={userActive ? 'user-right-box active' : 'user-right-box'} onClick={openModal}>
+               {!isTokenSet && ( <button className="anchor-button" onClick={() => dispatch(openSignIn())}>Sign in</button>)}
+               {!isTokenSet && ( <button className="anchor-button" onClick={() => dispatch(openSignUp())}>Sign up</button>)}
+               {isTokenSet && ( <div className={userInfoOpen ? 'user-right-box active' : 'user-right-box'} onClick={() => dispatch(openUserInfo())}>
                   <div className="user-img">
                     <Image width={40} height={40} className="w-full" src={'/assets/images/user.png'} alt=""></Image>
                   </div>
@@ -257,16 +237,7 @@ const logout=()=>{
                     {/* <div className="user-designation">Sales Representative</div> */}
                   </div>
 
-                  <div className="user-dropdowen">
-                    <ul>
-                      <li>
-                        <Link href="#" >Account</Link>
-                      </li>
-                      <li>
-                        <button onClick={logout} >Log out</button>
-                      </li>
-                    </ul>
-                  </div>
+                  
                 </div>)}
                 {isTokenSet && ( 
                 <div className="amount-tag">
@@ -283,13 +254,13 @@ const logout=()=>{
           </div>
         </section>
 
-        {isPopupVisible && (
+        {parentPopupOpen && (
         <div className="game-popup login-popup">
-          <div className="game-popup-overlay" onClick={togglePopup}></div>
+          <div className="game-popup-overlay" ></div>
           <div className="game-popup-wrapper">
-            <button className="game-popup-close" onClick={togglePopup}></button>
+            <button className="game-popup-close" onClick={() => dispatch(closeParentPopup())}></button>
             <div className="game-popup-body">
-                {isSigninPopup ==1 && (
+                {signInOpen && (
                 <div className="game-signin">
                   <div className="gamexxsheading">Sign In</div>
                   <div className="form-box">
@@ -300,19 +271,19 @@ const logout=()=>{
                       <div className="form-group">
                         <input type="password" name="password" value={signin.values.password} onChange={signin.handleChange} className="form-control" placeholder="Login Password"></input>
                       </div>
-                      <div className="forgot-btn" onClick={resetPopup}>Forgot your password?</div>
+                      <div className="forgot-btn" onClick={() => dispatch(openResetPassword())}>Forgot your password?</div>
                       <div className="form-group">
                         <button type="submit" className="anchor-button" disabled={loader}>{loader? "Loading....":"Sign In"} </button>
                       </div>
                     </form>
                     <div className="create-txt">
                       <p>New to bc.ai?</p>
-                      <div className="create-btn" onClick={signUPPopup}>Create account</div>
+                      <div className="create-btn" onClick={() => dispatch(openSignUp())}>Create account</div>
                     </div>
                   </div>
                 </div>
                 )}
-                {isSigninPopup == 2 && (
+                {resetPasswordOpen && (
                 <div className="game-signin">
                   <div className="gamexxsheading">Reset Password</div>
                   <div className="form-box">
@@ -326,12 +297,12 @@ const logout=()=>{
                     </form>
                     <div className="create-txt">
                       <p>Already have an account?</p>
-                      <div className="create-btn" onClick={signinPopup}>Sign in</div>
+                      <div className="create-btn" onClick={() => dispatch(openSignIn())}>Sign in</div>
                     </div>
                   </div>
                 </div>
                 )}
-                {isSigninPopup == 3 && (
+                {signUpOpen && (
                 <div className="game-signin">
                   <div className="gamexxsheading">Sign Up</div>
                   <div className="form-box">
@@ -368,7 +339,7 @@ const logout=()=>{
                     </form>
                     <div className="create-txt">
                       <p>Already have an account?</p>
-                      <div className="create-btn" onClick={signinPopup}> Sign in</div>
+                      <div className="create-btn" onClick={() => dispatch(openSignIn())}> Sign in</div>
                       
                     </div>
                   </div>
@@ -393,7 +364,7 @@ const logout=()=>{
           </div>
         </div>
         )}
-        <AccountModal isOpen={isModalOpen} onClose={closeModal} userdata={userData}></AccountModal>
+        <AccountModal isOpen={userInfoOpen} onClose={() => dispatch(closeParentPopup())} userdata={userData}></AccountModal>
         <section className="mobile-sticky-links">
           <ul>
             <li>
@@ -408,7 +379,7 @@ const logout=()=>{
               </Link>
             </li>
             <li>
-              <Link href='javascript:void(0)'>
+              <Link href='javascript:void(0)' onClick={()=>setopenSearch(true)}>
                 <div className="icon">
                   <svg _ngcontent-ng-c3384484568="" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384484568="" d="M10.3344 19.6675C15.4896 19.6675 19.6688 15.4884 19.6688 10.3332C19.6688 5.17793 15.4896 0.998779 10.3344 0.998779C5.17915 0.998779 1 5.17793 1 10.3332C1 15.4884 5.17915 19.6675 10.3344 19.6675Z" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path _ngcontent-ng-c3384484568="" d="M22.0014 22.0014L16.9258 16.9258" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 </div>
@@ -416,7 +387,7 @@ const logout=()=>{
               </Link>
             </li>
             <li>
-              <Link href='javascript:void(0)' onClick={userToggle}>
+              <Link href='javascript:void(0)' onClick={() => dispatch(openUserInfo())}>
                 <div className="icon">
                   <svg className="feather feather-user" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
@@ -433,6 +404,7 @@ const logout=()=>{
             </li>
           </ul>
         </section>
+       {openSearch && (<Search onClose={handleCloseSearch}/>)} 
       </>
     );
 }

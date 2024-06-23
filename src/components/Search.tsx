@@ -3,7 +3,9 @@ import Image from "next/image";
 import { useState } from "react";
 import GameCard from '../components/GameCard';
 import RecommendedGames from '../components/RecommendedGames';
-export default function Search() {
+export default function Search({onClose}:any) {
+
+
     return (
       <>
         <section className="search-box">
@@ -16,7 +18,7 @@ export default function Search() {
                         </div>
                         <input type="text" className="search-control" placeholder="Game name | Provider"></input>
                         <button className="clear-btn"></button>
-                        <div className="search-cancel">Cancel</div>
+                        <div className="search-cancel" onClick={onClose}>Cancel</div>
                     </div>
                     <div className="search-result">
                         <p>Search requires at least 3 characters</p>
