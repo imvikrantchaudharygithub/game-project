@@ -3,12 +3,12 @@ import Image from "next/image";
 import { useState } from "react";
 import GameCard from '../components/GameCard';
 import RecommendedGames from '../components/RecommendedGames';
-export default function Search({onClose}:any) {
+export default function Search({onClose, openValue}:any) {
 
 
     return (
       <>
-        <section className="search-box">
+        <section className={openValue ? "search-box " :"search-box hidden"}>
             <div className="game-popup-overlay"></div>
             <div className="search-main">
                 <div className="container">

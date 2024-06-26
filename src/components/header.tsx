@@ -165,6 +165,7 @@ const logout=()=>{
 
 const handleCloseSearch = () => {
 setopenSearch(false)
+console.log("search", openSearch)
 };
   
     return (
@@ -404,7 +405,9 @@ setopenSearch(false)
             </li>
           </ul>
         </section>
-       {openSearch && (<Search onClose={handleCloseSearch}/>)} 
+       {/* {openSearch && ( */}
+       <Search onClose={handleCloseSearch} openValue={openSearch}/>
+        {/* )}  */}
       </>
     );
 }

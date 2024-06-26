@@ -5,9 +5,11 @@ import Deposit from '../components/Deposit';
 import Withdrawal from '../components/Withdrawal';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { useRouter } from 'next/router';
 
 
 export default function useraccount() {
+    const router = useRouter();
 
     const user = useAppSelector((state:any) => state.user);
 
@@ -16,7 +18,11 @@ export default function useraccount() {
         setToggleState(index);
     }
   
-
+    useEffect(() => {
+       if(!user?.id){
+        router.push('/');
+       }
+        }, [user?.id]);
     return (
         <>
             <section className="user-cash padding-tb-lg">
@@ -42,3 +48,4 @@ export default function useraccount() {
         </>
     );
 }
+
