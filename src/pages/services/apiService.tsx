@@ -14,7 +14,7 @@ const apiService = axios.create({
    
     // 'Access-Control-Allow-Origin':'http://localhost:3000'
   },
-  credentials: 'include' 
+  withCredentials: true
 });
 
 // Function to set authorization token (optional)
