@@ -14,7 +14,7 @@ export default function Withdrawal({userData}:any) {
       }
 
     const [loader, setloader] = useState(false)
-    const [userWithdrawalList,setuserWithdrawalList]=useState()
+    const [userWithdrawalList,setuserWithdrawalList]=useState<any>()
 
     useEffect(() => {
     userWithdrawal(userData?.id)
