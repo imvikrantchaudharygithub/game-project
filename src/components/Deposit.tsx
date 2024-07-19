@@ -13,7 +13,7 @@ export default function Deposit({userData}:any) {
     const [bankDetail, setBankDetail] = useState<any>()
     const [selectedBank, setSelectedBank] = useState<any>()
 
-    const [imagePreview, setImagePreview] = useState(null); 
+    const [imagePreview, setImagePreview] = useState<string | null>(null); 
     const [loader, setLoader] = useState(false)
 
     useEffect(() => {
@@ -185,14 +185,15 @@ export default function Deposit({userData}:any) {
                                                 name="image"
                                                 type="file"
                                                 onChange={(event) => {
-                                                    const file = event.currentTarget.files[0];
-                                                    deposit.setFieldValue('image', file);
-                                                    if (file) {
+                                                    const files = event.currentTarget.files;
+                                                    if (files && files.length > 0) {
+                                                      const file = files[0];
+                                                      deposit.setFieldValue('image', file);
+                                                      if (file) {
                                                         setImagePreview(URL.createObjectURL(file)); // Set image preview URL
-                                                    } else {
-                                                        setImagePreview(null); // Reset image preview if no file selected
+                                                      }
                                                     }
-                                                }}></input>
+                                                  }}></input>
                                         </div>
                                         {deposit.touched.image && deposit.errors.image ? (
                     <div className="text-red-700">{deposit.errors.image}</div>
