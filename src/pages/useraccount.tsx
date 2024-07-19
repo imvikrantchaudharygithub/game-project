@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { useRouter } from 'next/router';
 
 
-export default function useraccount() {
+export default function Useraccount() {
     const router = useRouter();
 
     const user = useAppSelector((state:any) => state.user);
