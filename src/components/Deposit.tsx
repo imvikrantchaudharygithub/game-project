@@ -52,7 +52,7 @@ export default function Deposit({userData}:any) {
             const formData = new FormData();  // Create a FormData object
             formData.append('transactionNumber', values.transactionNumber);
             formData.append('amount', values.amount);
-            formData.append('image', values.image);  // Append image to FormData
+            formData.append('image', values.image || ''); // Append image to FormData
             formData.append('userId', userData?.id);
 
             try {
