@@ -10,7 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function Deposit({userData}:any) {
     const [toggleState, setToggleState] = useState(1);
-    const [bankDetail, setBankDetail] = useState()
+    const [bankDetail, setBankDetail] = useState<any>()
     const [selectedBank, setSelectedBank] = useState()
 
     const [imagePreview, setImagePreview] = useState(null); 
