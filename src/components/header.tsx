@@ -53,7 +53,7 @@ const[openSearch,setopenSearch]=useState(false)
     setMenuActive(!menuActive);
   };
  
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState<any>();
 
   useEffect(() => {
       if(isTokenSet){
