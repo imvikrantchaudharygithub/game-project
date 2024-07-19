@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import getToken from '../services/tokenservice'
 
-export function middleware(req) {
+export function Middleware(req) {
   const token = getToken();
 
   if (!token) {
