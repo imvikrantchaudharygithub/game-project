@@ -12,7 +12,7 @@ export const setToken = (token:string) => {
   }
 };
 
-export const getToken = () => {
+ const getToken = () => {
   if (localStorageAvailable) {
     return localStorage.getItem('accessToken');
   }
@@ -23,4 +23,4 @@ export const clearTokenlocal = () => {
     localStorage.removeItem('accessToken');
   }
 };
-// export default {getToken};
+export default getToken;
