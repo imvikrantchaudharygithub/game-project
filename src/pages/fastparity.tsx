@@ -23,7 +23,7 @@ import useSocket from "@/hooks/useSocket";
 import apiService from "./services/apiService";
 import { setUser } from "@/slices/userSlice";
 import { error } from "console";
-export default function fastparity() {
+export default function Fastparity() {
     const dispatch = useAppDispatch();
     // const socket = io('http://localhost:4000');
     const socket = useSocket();
