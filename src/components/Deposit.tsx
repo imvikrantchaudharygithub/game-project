@@ -28,7 +28,7 @@ export default function Deposit({userData}:any) {
             console.log("getbankaccounts  api err", err)
         })
     }
-    const getselectedbank =async (id: any) => {
+    const getselectedbank =async (id: string) => {
         console.log("selected id",id)
         const data = await bankDetail?.find((item: any) => item._id === id);
         console.log("selected bank data", data)
@@ -52,7 +52,7 @@ export default function Deposit({userData}:any) {
             const formData = new FormData();  // Create a FormData object
             formData.append('transactionNumber', values.transactionNumber);
             formData.append('amount', values.amount);
-            formData.append('image', values.image || ''); // Append image to FormData
+            formData.append('image', values.image || '');  // Append image to FormData
             formData.append('userId', userData?.id);
 
             try {
