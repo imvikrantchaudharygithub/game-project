@@ -9,7 +9,7 @@ const useSocket = () => {
 
   useEffect(() => {
     // socket = io('http://localhost:4000'); // Ensure correct URL/port
-    socket = io(process.env.SOCKETURL || 'https://moneymonkey-backend-d668543be371.herokuapp.com' ,{
+    socket = io(process.env.SOCKETURL || 'http://moneymonkey-backend-d668543be371.herokuapp.com' ,{
       transports: ['websocket', 'polling'], reconnectionAttempts: 5
     }
   ); 
