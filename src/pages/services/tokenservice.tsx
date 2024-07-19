@@ -6,20 +6,21 @@ if (typeof window !== 'undefined' && window.localStorage) {
   localStorageAvailable = true;
 }
 
-export const setToken = (token:any) => {
+const setToken = (token:any) => {
   if (localStorageAvailable) {
     localStorage.setItem('accessToken', token);
   }
 };
 
-export const getToken = () => {
+const getToken = () => {
   if (localStorageAvailable) {
     return localStorage.getItem('accessToken');
   }
   return null;
 };
-export const clearTokenlocal = () => {
+const clearTokenlocal = () => {
   if (localStorageAvailable) {
     localStorage.removeItem('accessToken');
   }
 };
+export default {setToken,getToken,clearTokenlocal};
