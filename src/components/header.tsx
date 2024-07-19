@@ -7,7 +7,8 @@ import * as Yup from 'yup';
 import { apipost,get } from "../pages/services/apiService";
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { setToken,clearToken } from '../slices/tokenSlice';
-import { getToken ,setToken as setLocaltoken ,clearTokenlocal} from "../pages/services/tokenservice";
+// import  getToken,{clearTokenlocal},setToken as setLocaltoken from "../pages/services/tokenservice";
+import {getToken,  setToken as setLocaltoken, clearTokenlocal } from '../pages/services/tokenservice';
 import { setUser, clearUser } from '../slices/userSlice';
 import {
   openSignIn,
