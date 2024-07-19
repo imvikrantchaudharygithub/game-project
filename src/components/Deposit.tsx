@@ -11,7 +11,7 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function Deposit({userData}:any) {
     const [toggleState, setToggleState] = useState(1);
     const [bankDetail, setBankDetail] = useState<any>()
-    const [selectedBank, setSelectedBank] = useState()
+    const [selectedBank, setSelectedBank] = useState<any>()
 
     const [imagePreview, setImagePreview] = useState(null); 
     const [loader, setLoader] = useState(false)
@@ -28,7 +28,7 @@ export default function Deposit({userData}:any) {
             console.log("getbankaccounts  api err", err)
         })
     }
-    const getselectedbank =async (id: string) => {
+    const getselectedbank =async (id:string) => {
         console.log("selected id",id)
         const data = await bankDetail?.find((item: any) => item._id === id);
         console.log("selected bank data", data)
