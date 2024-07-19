@@ -3,7 +3,7 @@ import Image from "next/image";
 import { SetStateAction, useEffect, useState } from "react";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { apipost, get,api } from "../pages/services/apiService";
+import api from "../pages/services/apiService";
 import apiService from "../pages/services/apiService";
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -20,7 +20,7 @@ export default function Deposit({userData}:any) {
         getBanks()
     }, []);
     const getBanks = async () => {
-        await get("/getbankaccounts").then((res: any) => {
+        await api.get("/getbankaccounts").then((res: any) => {
             console.log("getbankaccounts", res.data[0])
             setBankDetail(res?.data)
             getselectedbank(res?.data[0]?._id)
