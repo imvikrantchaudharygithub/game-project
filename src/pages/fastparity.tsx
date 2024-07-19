@@ -308,7 +308,7 @@ export default function Fastparity() {
                                                         </thead>
                                                         <tbody>
                                                             {list && list?.map((item: any) => (
-                                                                <tr>
+                                                                <tr key={item._id}>
                                                                     <td className="">
                                                                         {item?.timeperiod}
                                                                     </td>

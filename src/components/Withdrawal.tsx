@@ -117,7 +117,7 @@ export default function Withdrawal({userData}:any) {
                                     </thead>
                                     <tbody>
                                        {userWithdrawalList?.map((item:any)=>(
-                                        <tr>
+                                        <tr key={item._id}>
                                             <td>
                                             ₹ {item?.amount}
                                             </td>
