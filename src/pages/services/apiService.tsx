@@ -3,8 +3,9 @@
 import axios, { AxiosResponse } from 'axios';
 import { getToken } from './tokenservice';
 
-const baseURL = 'http://localhost:8000/api'; // Replace this with your API base URL
-// const baseURL = 'https://gaming-adda-backend.vercel.app/api';
+// const baseURL = 'http://localhost:4000/api'; // Replace this with your API base URL
+const baseURL = 'https://moneymonkey-backend-d668543be371.herokuapp.com/api';
+// const baseURL = process.env.BASEURL;
 
 const apiService = axios.create({
   baseURL,

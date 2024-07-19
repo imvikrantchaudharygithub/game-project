@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
 @import url(~slick-carousel/slick/slick.css);
 
 :root {
+  --steps: 5;
   --primary-color:#3bc016;
   --black-color:#000;
   --white-color:#fff;
@@ -230,7 +232,7 @@ body.scroll{overflow-y: hidden;}
 .search-main .history-list{display: flex; align-items: center; flex-wrap: wrap;}
 .search-main .history-list li{font-size: 16px; height: 35px; display: flex; align-items: center; border-radius: 4px; padding: 8px 20px; background: rgba(113, 113, 113, .2);}
 .search-main .result-title{margin-bottom: 20px;}
-.search-main .result-title .result-num{color: var(--.result-numra-color);}
+.search-main .result-title .result-num{color: var(--result-numra-color)}
 .search-main .result-title .result-num span{color: var(--primary-color);}
 .search-main .result-card{display: grid; gap: 12px; grid-template-columns: repeat(7, 1fr);}
 .search-main .recommended-box .container{padding: 0;}
@@ -414,7 +416,7 @@ body.scroll{overflow-y: hidden;}
 
 .fastparity-left .fastparity-view-bottom{margin-top: 30px;}
 .fastparity-left .fastparity-view-bottom p{padding: 0 0 5px 35px;}
-.fastparity-left .fastparity-view-bottom .progress{width: 80%; height: 3px; background: var(--primary-color);}
+.fastparity-left .fastparity-view-bottom .progress{width: 80%; height: 3px; ;}
 .fastparity-right{background: var(--slider-btn-color); border-radius: 4px; -webkit-flex-basis: 39%; -ms-flex-preferred-size: 39%; flex-basis: 39%; margin-left: 10px;}
 
 .fastparity-panel-box{padding: 10px 0;}
@@ -472,6 +474,20 @@ body.scroll{overflow-y: hidden;}
 .fastparity-bet-box .fastparity-bet-amount .bet-btn{width: 100%; height: 100%; font-size: 20px; border: 1px solid var(--white-color); border-radius: 15px;}
 .fastparity-bet-box .fastparity-bet-amount .bet-btn span{width: 100%; display: block;}
 .fastparity-panel-box .fastparity-panel.active{display: block;}
+.game-popup.win-popup{text-align: center;}
+.win-popup .game-popup-wrapper{width: 400px; box-shadow: 0 5px 20px rgb(80, 255, 168) inset; padding: 30px 20px; border-radius: 30px;}
+.win-popup .game-popup-wrapper .gamelgheading{background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
+  color:transparent; -webkit-background-clip: text; background-clip: text; font-weight: 600; margin-bottom: 30px; position: relative;}
+.win-popup .win-price{margin-bottom: 30px}
+.win-popup .win-price .gamesmheading, .win-popup .win-price .gamemdheading{font-family: "Playwrite GB S", cursive; font-weight: 500; margin-bottom: 5px}
+.win-popup .win-price .gamemdheading{font-weight: 600;}
+.win-popup .win-price p{font-family: "Playwrite GB S", cursive;}
+.win-popup .win-number .gamexsheading{width: 120px; color: var(--white-color); font-weight: 400;}
+.win-popup .win-number{margin-bottom: 30px}
+.win-popup .win-number .win-num-list{gap: 10px;}
+.win-popup .win-number .win-num-list .num-text{width: 70px; text-align: center; font-size: 14px; color: var(--white-color); border: 1px solid var(--white-color); background: var(--red-color); border-radius: 5px; padding: 5px 2px; box-shadow: 0 10px 10px rgba(0, 0, 0, .2);}
+.win-popup .win-number .win-num-list .num{width: 32px; height: 32px; border-radius: 50%;}
 
 
 .search-box::-webkit-scrollbar-track, .continuous-main::-webkit-scrollbar-track, .record-main::-webkit-scrollbar-track {border-radius: 0px; background-color: transparent}
@@ -673,4 +689,7 @@ body.scroll{overflow-y: hidden;}
 .deposit-main .bank-account ul li{align-items: flex-start; gap: 0 15px;}
 .deposit-main .bank-account ul li p{font-size: 14px;}
 .deposit-main .user-pay-text p{width: 100%;}
-}
+.win-popup .game-popup-wrapper{width: 95%;}
+.win-popup .win-number .gamexsheading{width: 100%; margin-bottom: 15px;}
+.win-popup .win-number{justify-content: center;}
+} 
