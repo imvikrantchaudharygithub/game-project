@@ -35,6 +35,7 @@ export default function Fastparity() {
     const [beton, setBeton] = useState(false)
     const [winResult,setWinResult]=useState<any>({})
     const [winResultdata,setWinResultdata]=useState<any>([])
+    const[betwinHistory,setBetwinHistory]=useState<any>([])
     const widthPercent = (timer / 30) * 100;
 
  
@@ -127,6 +128,11 @@ export default function Fastparity() {
             
         }
         if (timer === 0) {
+            socket.on('previousresults',(previousResults:any)=>{
+                setBetwinHistory(previousResults)
+                    console.log('winhistory',previousResults,betwinHistory)
+            })
+            
             setObject(initialObjectState)
             setBetnumber(0)
             setCount(50)
@@ -172,6 +178,7 @@ export default function Fastparity() {
             //   console.log('Timer countdown:', countdown);
             setTimer(countdown);
         });
+       
 
         // socket.on('declaredresult', (result:any) => {
         //     const filterdata= filterBetOn(list,result.smallestColor,result.smallestNumber)
@@ -344,10 +351,16 @@ export default function Fastparity() {
                                                 <p>Fast Parity Record</p>
                                             </div>
                                             <div className="record-main d-grid">
-                                                <div className="text-center">
-                                                    <div className="record-txt">4465</div>
-                                                    <div className="record-num">2</div>
+                                                {betwinHistory?.map((item:any,index:any)=>(
+                                                <div className="text-center transition-all duration-700 ease-in-out" key={item?.timestamp}>
+                                                    <div className="record-txt">{index}</div>
+                                                    <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
+                                                                                item?.smallestColor  === 'Violet' ? 'bg-[#814cf4]' :
+                                                                                item?.smallestColor  === 'Red' ? 'bg-[#f42525]' :
+                                                                                        'bg-white'
+                                                                            }`}>{item?.smallestNumber}</div>
                                                 </div>
+                                                ))}
                                             </div>
                                         </div>
                                         <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
