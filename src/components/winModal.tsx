@@ -12,7 +12,10 @@ const WinModal = ({resultdata,resultFilteritems}:any) => {
           <div className="game-popup-wrapper bg-gradient-to-r from-green-500 to-green-800">
             {/* <button className="game-popup-close" onClick={onClose}></button> */}
             <div className="game-popup-body">
-                <div className="gamelgheading">Congratulations</div>
+                <div className="congratulation-img">
+                  <Image width={500} height={500} className="w-full" src={'/assets/images/congratulations-bg.png'} alt=""></Image>
+                </div>
+                
                 <div className="win-number d-flex align">
                   <div className="gamexsheading">Lottery results</div>
                   <div className="win-num-list d-flex">
@@ -27,7 +30,7 @@ const WinModal = ({resultdata,resultFilteritems}:any) => {
                     <div className="gamemdheading">₹ {totalAmount}</div>
                     <p>Period Win 1 minute 20240626011264</p>
                 </div>
-                )}
+                 )}
                 <p>6 Seconds auto close</p>
             </div>
           </div>

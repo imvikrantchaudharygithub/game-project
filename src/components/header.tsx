@@ -175,8 +175,9 @@ console.log("search", openSearch)
           <div className="container">
             <div className="header-main d-flex align">
               <div className="header-logo">
-                <Link href='#'>
+                <Link href='#' className="d-flex ">
                   <Image width={942} height={248} className="w-full" src={'/assets/images/header-logo.png'} alt=""></Image>
+                  <span className="logo-text">Money Monkey</span>
                 </Link>
               </div>
               <div className={menuActive ? 'header-menu active' : 'header-menu'}>
