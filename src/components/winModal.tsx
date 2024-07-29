@@ -19,8 +19,11 @@ const WinModal = ({resultdata,resultFilteritems}:any) => {
                 <div className="win-number d-flex align">
                   <div className="gamexsheading">Lottery results</div>
                   <div className="win-num-list d-flex">
-                    <div className="num-text">{resultdata?.smallestColor}</div>
-                    <div className="num-text num">{resultdata?.smallestNumber}</div>
+                    <div className={`num-text text-black text-2xl font-bold ${resultdata?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
+                                                                               resultdata?.smallestColor  === 'Violet' ? 'bg-[#814cf4]' :
+                                                                               resultdata?.smallestColor  === 'Red' ? 'bg-[#f42525]' :
+                                                                                        'bg-white'}`}>{resultdata?.smallestColor}</div>
+                    <div className="num-text num bg-white text-black text-4xl font-bold">{resultdata?.smallestNumber}</div>
                     {/* <div className="num-text">Small</div> */}
                   </div>
                 </div>

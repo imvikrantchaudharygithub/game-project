@@ -124,7 +124,8 @@ const singup = useFormik ({
       name: '',
       email: '',
       phone: '',
-      password: ''
+      password: '',
+      referral_code:''
   },
   validationSchema: Yup.object({
       name: Yup.string().required('Required'),
@@ -139,7 +140,8 @@ const singup = useFormik ({
           username:values.name,
           email:values.email,
           phone:values.phone,
-          password:values.password
+          password:values.password,
+          referral_code:values.referral_code
       }
       try{
      await apipost("/signup",payload).then((res:any)=>{
@@ -325,7 +327,7 @@ console.log("search", openSearch)
                       <div className={refeActive ? 'form-group refer-title active' : 'form-group refer-title'}>
                         <p onClick={refeToggle}>Enter Referral/Promo Code <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></p>
                         <div className="form-group">
-                          <input type="text" className="form-control" placeholder="Referral/Promo Code (Optional)"></input>
+                          <input type="text" name="referral_code" value={singup.values.referral_code} onChange={singup.handleChange}  className="form-control" placeholder="Referral/Promo Code (Optional) "></input>
                         </div>
                       </div>
                       <div className="form-group checkbox">

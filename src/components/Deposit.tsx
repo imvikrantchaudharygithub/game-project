@@ -40,6 +40,7 @@ export default function Deposit({userData}:any) {
         initialValues: {
             transactionNumber: '',
             amount: '',
+            couponcode:'',
             image: null,  // Add image field to initial values
         },
         validationSchema: Yup.object({
@@ -54,6 +55,7 @@ export default function Deposit({userData}:any) {
             formData.append('amount', values.amount);
             formData.append('image', values.image || '');  // Append image to FormData
             formData.append('userId', userData?.id);
+            formData.append('couponCode', values.couponcode);
 
             try {
                 const res = await apiService.post('/add-transaction', formData, {
@@ -176,6 +178,12 @@ export default function Deposit({userData}:any) {
                                        {deposit.touched.amount && deposit.errors.amount ? (
                     <div className="text-red-700">{deposit.errors.amount}</div>
                 ) : null}
+
+                                        <div className="form-group">
+                                            <label className="form-label">Coupon Code <span className="red">*</span></label>
+                                            <input type="text" name="couponcode"
+                                             onChange={deposit.handleChange} className="form-control" placeholder="Coupon Code" ></input>
+                                        </div>
             
                                       
                                         

@@ -502,7 +502,7 @@ body.scroll{overflow-y: hidden;}
 .win-popup .win-number .gamexsheading{width: 100%; color: var(--black-color); font-weight: 400;}
 .win-popup .win-number{margin-bottom: 30px}
 .win-popup .win-number .win-num-list{width: 100%; justify-content: center; margin-top: 20px; gap: 10px;}
-.win-popup .win-number .win-num-list .num-text{width: 150px; height: 80px; text-align: center; font-size: 14px; color: var(--white-color); border: 0px solid var(--white-color); background: #1d803a; border-radius: 5px; padding: 5px 2px; box-shadow: 0 10px 10px rgba(0, 0, 0, .2);}
+.win-popup .win-number .win-num-list .num-text{display: flex; justify-content: center; align-items: center; width: 150px; height: 80px; text-align: center; border: 0px solid var(--white-color); border-radius: 5px; padding: 5px 2px; box-shadow: 0 10px 10px rgba(0, 0, 0, .2);}
 .win-popup .win-number .win-num-list .num{width: 80px; height: 80px; border-radius: 50%;}
 
 
