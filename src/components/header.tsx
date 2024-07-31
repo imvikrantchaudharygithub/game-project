@@ -245,6 +245,7 @@ console.log("search", openSearch)
                   
                 </div>)}
                 {isTokenSet && ( 
+                    <Link href='/useraccount'>
                 <div className="amount-tag">
                   <div className="amount-icon">
                     <Image width={48} height={48} className="icon" src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
@@ -253,6 +254,7 @@ console.log("search", openSearch)
                   {user?.amount}
                   </div>
                 </div>
+                </Link>
               )}
               </div>
             </div>
@@ -399,15 +401,17 @@ console.log("search", openSearch)
                 Account
               </Link>
             </li>
-            <li>
-              <Link href='javascript:void(0)' className="account-price">
+            {isTokenSet && (    <li>
+              <Link href='/useraccount' className="account-price">
                 <div className="icon">
                   <Image width={48} height={48} src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
                 </div>
                {user?.amount}
               </Link>
             </li>
+            )}
           </ul>
+          
         </section>
        {/* {openSearch && ( */}
        <Search onClose={handleCloseSearch} openValue={openSearch}/>
