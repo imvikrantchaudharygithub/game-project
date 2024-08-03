@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from 'react';
-const AccountModal = ({ isOpen, onClose ,userdata}) => {
+const AccountModal = ({ isOpen, onClose ,userdata ,logout}) => {
       
     if (!isOpen) return null;
     return (
@@ -45,7 +45,7 @@ const AccountModal = ({ isOpen, onClose ,userdata}) => {
                             </Link> 
                         </li> */}
                     </ul>
-                    <button className="anchor-button anchor-pink-button">
+                    <button onClick={logout} className="anchor-button anchor-pink-button">
                         Log Out
                     </button>
                 </div>

@@ -8,12 +8,12 @@ const useSocket = () => {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    // socket = io('http://localhost:4000'); // Ensure correct URL/port
-    socket = io(process.env.SOCKETURL || 'https://moneymonkey-backend-d668543be371.herokuapp.com' ,{
-      transports: ['websocket', 'polling'], reconnectionAttempts: 5,  withCredentials: true,
+    socket = io('http://localhost:4000'); // Ensure correct URL/port
+  //   socket = io(process.env.SOCKETURL || 'https://moneymonkey-backend-d668543be371.herokuapp.com' ,{
+  //     transports: ['websocket', 'polling'], reconnectionAttempts: 5,  withCredentials: true,
 
-    }
-  ); 
+  //   }
+  // ); 
 
     socket.on('connect', () => {
       console.log('Connected to server', socket.id);
