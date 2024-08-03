@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from 'react';
-const AccountModal = ({ isOpen, onClose ,userdata ,logout}) => {
-      
+import { redirect } from "next/dist/server/api-utils";
+
+const AccountModal = ({ isOpen, onClose ,userdata ,user,logout,gotowithdrawal}) => {
+
     if (!isOpen) return null;
     return (
       <>
@@ -24,14 +26,14 @@ const AccountModal = ({ isOpen, onClose ,userdata ,logout}) => {
                   </a>
                 </div>
                 <div className="user-price-list d-grid">
-                    <div className="user-amount-card">
+                    {/* <div className="user-amount-card">
                       <p>From <span className="">Available <strong>100.00</strong></span></p>
                       <div className="gamemdheading">100.00</div>
-                    </div>
+                    </div> */}
                     <div className="user-amount-card">
-                      <p>From <span className="">Available <strong>100.00</strong></span></p>
-                      <div className="gamemdheading">100.00</div>
-                      <button type="button" className="edit-btn d-flex align">
+                      <p>From <span className="">Available <strong>{user?.amount}</strong></span></p>
+                      <div className="gamemdheading">{user?.amount}</div>
+                      <button type="button" className="edit-btn d-flex align" onClick={gotowithdrawal}>
                         <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>

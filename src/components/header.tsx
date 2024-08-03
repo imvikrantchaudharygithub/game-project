@@ -168,6 +168,11 @@ const logout=()=>{
   dispatch(setUser({ id: '', amount:''}));
 }
 
+const gotowithdrawal =()=>{
+  dispatch(closeParentPopup())
+ router.push('/useraccount');
+}
+
 const handleCloseSearch = () => {
 setopenSearch(false)
 console.log("search", openSearch)
@@ -373,7 +378,7 @@ console.log("search", openSearch)
           </div>
         </div>
         )}
-        <AccountModal isOpen={userInfoOpen} onClose={() => dispatch(closeParentPopup())} userdata={userData} logout={logout}></AccountModal>
+        <AccountModal isOpen={userInfoOpen} onClose={() => dispatch(closeParentPopup())} userdata={userData} user={user} logout={logout} gotowithdrawal={gotowithdrawal}></AccountModal>
         <section className="mobile-sticky-links">
           <ul>
             <li>
