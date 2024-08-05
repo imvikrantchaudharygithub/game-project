@@ -348,7 +348,7 @@ console.log("search", openSearch)
                         <label htmlFor="agree2"> I agree to receive marketing promotions from bc.ai.</label>
                       </div>
                       <div className="form-group">
-                        <button type="submit" className="anchor-button">Sign Up</button>
+                        <button type="submit" disabled={loader} className="anchor-button">{loader ? 'Loading..': 'Sign Up'}</button>
                       </div>
                     </form>
                     <div className="create-txt">
