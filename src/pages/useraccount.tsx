@@ -42,6 +42,11 @@ export default function Useraccount() {
                 console.log(err)
             })
     }
+
+    const refreshuserdata=()=>{
+        getuserData()
+        console.log("refresh function hit")
+    }
     return (
         <>
             <section className="user-cash padding-tb-lg">
@@ -68,7 +73,7 @@ export default function Useraccount() {
                         </div>
                         <div className={toggleState === 2 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Withdrawal userData={user} useralldata={userData}/>
+                                <Withdrawal userData={user} useralldata={userData} refreshuserdata={refreshuserdata}/>
                             </div>
                         </div>
                     </div>

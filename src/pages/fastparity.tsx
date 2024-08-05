@@ -20,7 +20,7 @@ import {
 } from '../slices/popupSlice';
 import io from 'socket.io-client';
 import useSocket from "@/hooks/useSocket";
-import apiService from "./services/apiService";
+import apiService, { apipost } from "./services/apiService";
 import { setUser } from "@/slices/userSlice";
 import { error } from "console";
 export default function Fastparity() {
@@ -88,11 +88,12 @@ export default function Fastparity() {
             const payload ={id:user?.id,
             amount:count,
             condition:"minusamount"}
-            apiService.post('/update-useramount',payload).then((res:any)=>{
+            apipost('/update-useramount',payload).then((res:any)=>{
                 console.log("updated amount res",res)
                 dispatch(setUser({ id: res?.data?.user?._id, amount: res?.data?.user?.balance}));
             }).catch((err:any)=>{
-                toast.error(err)
+                // toast.error(err)
+                console.log(err)
             })
 
             

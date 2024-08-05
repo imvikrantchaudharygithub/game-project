@@ -9,7 +9,7 @@ import moment from 'moment';
 import { env } from "process";
 
 
-export default function Withdrawal({userData,useralldata}:any) {
+export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
     const dateformate = (date: any) => {
         return moment(date).format('LL LT')
       }
@@ -42,13 +42,14 @@ export default function Withdrawal({userData,useralldata}:any) {
             }
             
             try{
-                   if(useralldata?.bankdetails !=0){
+                   if(useralldata?.bankdetails){
                 await apipost("/add-withdrawl",payload).then((res:any)=>{
                     console.log("add-withdrawl", res.data)
                     setloader(false)
                     withdrawal.resetForm()
                     toast.success("Withdrawal Request sent Succesfull",{position:"top-right"})
                     userWithdrawal(userData?.id)
+                   
                     // router.push(`/account`);
                 }).catch((err:any)=>{
                     toast.error(err.response.data.message,{position:"top-right"})
@@ -110,6 +111,7 @@ export default function Withdrawal({userData,useralldata}:any) {
                     bankform.resetForm()
                     toast.success("Bank added")
                     setTogglebankForm(false)
+                    refreshuserdata()
               }
                
             } catch (err) {
