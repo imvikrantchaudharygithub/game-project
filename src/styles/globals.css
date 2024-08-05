@@ -490,7 +490,7 @@ body.scroll{overflow-y: hidden;}
 .fastparity-bet-box .fastparity-bet-amount .bet-btn span{width: 100%; display: block;}
 .fastparity-panel-box .fastparity-panel.active{display: block;}
 .game-popup.win-popup{text-align: center;}
-.win-popup .game-popup-wrapper{width: 400px; padding: 150px 20px 30px; border-radius: 12px; background: #eccdac; color: var(--black-color);}
+.win-popup .game-popup-wrapper{width: 400px; padding: 120px 20px 30px; border-radius: 12px; background: #eccdac; color: var(--black-color);}
 .win-popup .congratulation-img{width: 250px; margin: 0 auto; position: absolute; top: -130px; left: 0; right: 0;}
 .win-popup .game-popup-wrapper .gamelgheading{background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
   background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );

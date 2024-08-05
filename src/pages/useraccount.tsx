@@ -6,6 +6,7 @@ import Withdrawal from '../components/Withdrawal';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { useRouter } from 'next/router';
+import { get } from "./services/apiService";
 
 
 export default function Useraccount() {
@@ -22,7 +23,25 @@ export default function Useraccount() {
        if(!user?.id){
         router.push('/');
        }
-        }, [user?.id]);
+    }, [user?.id]);
+    const [userData, setUserData] = useState<any>();
+    useEffect(() => {
+        // if(isTokenSet){
+        getuserData()
+        // console.log("userState",user)
+        // }
+    }, []);
+
+    const getuserData = async () => {
+            await get(`/getuserdata`).then((res: any) => {
+                console.log("userdata", res.data)
+                setUserData(res?.data?.user)
+                // dispatch(setUser({ id: res?.data?.user?._id, amount: res?.data?.user?.balance}));
+                // setEditvalue(res?.data?.user)
+            }).catch((err: any) => {
+                console.log(err)
+            })
+    }
     return (
         <>
             <section className="user-cash padding-tb-lg">
@@ -44,12 +63,12 @@ export default function Useraccount() {
                     <div className="latest-content">
                         <div className={toggleState === 1 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Deposit userData={user}/>
+                                <Deposit userData={user} />
                             </div>
                         </div>
                         <div className={toggleState === 2 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Withdrawal userData={user}/>
+                                <Withdrawal userData={user} useralldata={userData}/>
                             </div>
                         </div>
                     </div>

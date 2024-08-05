@@ -400,6 +400,15 @@ console.log("search", openSearch)
                 Search
               </Link>
             </li>
+            <li>
+              <Link href='/fastparity'>
+                <div className="icon">
+                  {/* <svg _ngcontent-ng-c3384484568="" width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" id="play"><path _ngcontent-ng-c3384484568="" d="M10.3344 19.6675C15.4896 19.6675 19.6688 15.4884 19.6688 10.3332C19.6688 5.17793 15.4896 0.998779 10.3344 0.998779C5.17915 0.998779 1 5.17793 1 10.3332C1 15.4884 5.17915 19.6675 10.3344 19.6675Z" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path _ngcontent-ng-c3384484568="" d="M22.0014 22.0014L16.9258 16.9258" stroke="#7D7D7D" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg> */}
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 142" id="play"><g><g><g><path fill="#f93052" d="M117.82 64.75c0 29.41-23.41 53.25-52.3 53.25a51.43 51.43 0 0 1-33.59-12.45A53.26 53.26 0 0 1 14.2 75a54 54 0 0 1-1-10.28c0-29.41 23.41-53.25 52.3-53.25a51.56 51.56 0 0 1 28.8 8.8 52.74 52.74 0 0 1 11.43 10.43 53.6 53.6 0 0 1 12.07 34z"></path><path fill="#f15a24" d="M115.09 47.7l-66.31 67.51a51.73 51.73 0 01-16.85-9.66c.21-.27.43-.51.67-.76l71.31-72.61a9.58 9.58 0 011.84-1.45 53.57 53.57 0 019.34 16.97zM94.32 20.3c-.18.21-.35.41-.55.61L22.46 93.52c-.2.2-.39.38-.6.56A53.36 53.36 0 0114.2 75l61.42-62.5a51.37 51.37 0 0118.7 7.8z"></path><path fill="#ed1c24" d="M129.31 62.5a65 65 0 0 1-128.62 0A66.08 66.08 0 0 0 0 72a65 65 0 0 0 130 0 66.08 66.08 0 0 0-.69-9.5z"></path><path fill="#f7931e" d="M65 20a45 45 0 1 1-45 45 45.05 45.05 0 0 1 45-45m0-20a65 65 0 1 0 65 65A65 65 0 0 0 65 0z"></path><path fill="#f15a24" d="M65.5 111c-25.27 0-47.76-9.89-62.11-25.26A65 65 0 0 0 126 87.37C111.64 101.81 89.86 111 65.5 111z"></path><path fill="#ed1c24" d="M99.73 57l-39.8-23a11.44 11.44 0 0 0-17.15 9.9v46a11.44 11.44 0 0 0 17.15 9.9l39.8-23a11.44 11.44 0 0 0 0-19.8z"></path><path fill="#fff" d="M96.4 55L58.59 33.19a11.44 11.44 0 0 0-17.15 9.9v43.65a11.44 11.44 0 0 0 17.15 9.9L96.4 74.82a11.44 11.44 0 0 0 0-19.82z"></path><circle cx="54" cy="42" r="6" fill="#fff"></circle><circle cx="63" cy="47" r="3"  fill="#fff"></circle></g></g></g></svg>
+                  </div>
+                Play
+              </Link>
+            </li>
             {isTokenSet && (  <li>
               <Link href='javascript:void(0)' onClick={() => dispatch(openUserInfo())}>
                 <div className="icon">

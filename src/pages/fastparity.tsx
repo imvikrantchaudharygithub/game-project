@@ -230,6 +230,10 @@ export default function Fastparity() {
     const dec = () => {
         setCount(count - 1);
     }
+    const oncountChange=(event:any)=>{
+        const val:number= Number(event.target.value) 
+        setCount(val)
+    }
 
     const getSelectednumber = (numvalue: any) => {
         console.log("selected number value", numvalue)
@@ -257,28 +261,29 @@ export default function Fastparity() {
                                                 {/* {timer == 0 && (<p>WINNER WINNER</p>)} */}
                                             </div>
                                             <div className="fastparity-time-right">
-                                                <p>Countdown - {timer}</p>
+                                                {/* <p>Countdown - <span className="time-num">{timer}</span></p> */}
                                                 <div className="time-box d-flex align">
-                                                    <div className="time-num">0</div>
+                                                    {/* <div className="time-num">0</div>
                                                     <div className="time-num">0</div>
                                                     <span>:</span>
-                                                    <div className="time-num">0</div>
-                                                    <div className="time-num">0</div>
+                                                    <div className="time-num">0</div> */}
+                                                    <p>Countdown :</p>
+                                                    <div className="time-num">{timer}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="fastparity-join d-grid">
                                             <div className={`fastparity-join-box  ${timer<=10 ? 'disabled':''}`}>
                                                 <button className="anchor-button" disabled={timer<=10} onClick={() => updateObject("beton", "Green")}>Green</button>
-                                                <p>1.95X</p>
+                                                <p>2x</p>
                                             </div>
                                             <div className={`fastparity-join-box  ${timer<=10 ? 'disabled':''}`}>
                                                 <button className="anchor-button anchor-pink-button" disabled={timer<=10} onClick={() => updateObject("beton", "Violet")}>Violet</button>
-                                                <p>1.95X</p>
+                                                <p>3x</p>
                                             </div>
                                             <div className={`fastparity-join-box  ${timer<=10 ? 'disabled':''}`}>
                                                 <button className="anchor-button anchor-red-button" disabled={timer<=10} onClick={() => updateObject("beton", "Red")}>Red</button>
-                                                <p>1.95X</p>
+                                                <p>2x</p>
                                             </div>
                                         </div>
                                         <div className="fastparity-num-list d-grid">
@@ -353,7 +358,7 @@ export default function Fastparity() {
                                             <div className="record-main d-grid">
                                                 {betwinHistory?.map((item:any,index:any)=>(
                                                 <div className="text-center transition-all duration-700 ease-in-out" key={item?.timestamp}>
-                                                    <div className="record-txt">{index}</div>
+                                                    <div className="record-txt">{index+1}</div>
                                                     <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
                                                                                 item?.smallestColor  === 'Violet' ? 'bg-[#814cf4]' :
                                                                                 item?.smallestColor  === 'Red' ? 'bg-[#f42525]' :
@@ -363,7 +368,7 @@ export default function Fastparity() {
                                                 ))}
                                             </div>
                                         </div>
-                                        <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
+                                        {/* <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
                                             <div className="probability-title">1000 rounds</div>
                                             <div className="probability-main">
                                                 <div className="probability-grid d-grid">
@@ -444,28 +449,28 @@ export default function Fastparity() {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     <div className="fastparity-panel-tab d-flex">
                                         <div className={toggleState === 1 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(1)}>Continuous</div>
                                         <div className={toggleState === 2 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(2)}>Record</div>
-                                        <div className={toggleState === 3 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(3)}>Probability</div>
+                                        {/* <div className={toggleState === 3 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(3)}>Probability</div> */}
                                     </div>
                                 </div>
                                 <div className="fastparity-bet d-flex">
                                     <div className="fastparity-bet-left relative">
-                                        <button className="plus-btn" onClick={addObjectToList}>+</button>
+                                        {/* <button className="plus-btn" onClick={addObjectToList}>+</button>
                                         <div className="fastparity-bet-tab custom-tab d-flex">
                                             <div className={toggleBet === 1 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab(1)}>Latest bets</div>
                                             <div className={toggleBet === 2 ? "tabs hovertime active" : "tabs hovertime"} onClick={() => toggleBetTab(2)}>High rollers</div>
-                                        </div>
+                                        </div> */}
                                         <div className="fastparity-bet-content">
                                             <div className={toggleBet === 1 ? "content-tab active" : "content-tab"}>
                                                 <div className="fastparity-bet-box d-flex">
                                                     <div className="fastparity-bet-amount">
                                                         <div className="count d-flex">
                                                             <button className="count-btn" onClick={dec}>-</button>
-                                                            <input className="count-num" type="number" value={count} />
+                                                            <input className="count-num" type="number" onChange={oncountChange} value={count} />
                                                             <button className="count-btn" onClick={inc}>+</button>
                                                         </div>
                                                         <div className="fastparity-num-list d-grid">
