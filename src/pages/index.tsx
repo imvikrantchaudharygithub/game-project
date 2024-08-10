@@ -10,19 +10,21 @@ import TopRatedGames from '../components/TopRatedGames';
 import MultipleGame from '../components/MultipleGame';
 import RecentBigWins from '../components/RecentBigWins';
 import LatestBet from '../components/LatestBet';
+import Homes from '../components/homes';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <main>
-      <Search></Search>
+      <Homes></Homes>
+      {/* <Search></Search>
       <HomeBanner></HomeBanner>
       <Banner></Banner>
       <MultipleGame></MultipleGame>
       <RecentBigWins></RecentBigWins>
       <TopRatedGames></TopRatedGames>
       <LatestBet></LatestBet>
-      <RecommendedGames></RecommendedGames>
+      <RecommendedGames></RecommendedGames> */}
     </main>
   );
 }

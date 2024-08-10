@@ -366,9 +366,9 @@ export default function Fastparity() {
 
                                                                 </tr>
                                                             ))}
-                                                            {!list.length && (<p>NO bet yet</p>)}
                                                         </tbody>
                                                     </table>
+                                                    {!list.length && (<p className="text-center">NO bet yet</p>)}
                                                 </div>
 
                                                 {/* <div className="continuous-item">
@@ -388,7 +388,7 @@ export default function Fastparity() {
                                                 {betwinHistory?.map((item:any,index:any)=>(
                                                 <div className="text-center transition-all duration-700 ease-in-out" key={item?.timestamp}>
                                                     <div className="record-txt">{index+1}</div>
-                                                    <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
+                                                    <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold mx-auto ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
                                                                                 item?.smallestColor  === 'Violet' ? 'bg-[#814cf4]' :
                                                                                 item?.smallestColor  === 'Red' ? 'bg-[#f42525]' :
                                                                                         'bg-white'
@@ -434,9 +434,10 @@ export default function Fastparity() {
 
                                                                 </tr>
                                                             ))}
-                                                            {!userwinHistory.length && (<p>No Win yet</p>)}
+                                                            
                                                         </tbody>
                                                     </table>
+                                                    {!userwinHistory.length && (<p className="text-center">No Win yet</p>)}
                                               </div>
                                             </div>
                                         </div>
@@ -471,7 +472,7 @@ export default function Fastparity() {
                                                         </div>
                                                     </div>
                                                     <div className="fastparity-bet-amount">
-                                                        <button className="anchor-button bet-btn" onClick={handleBet}>
+                                                        <button className="anchor-button bet-btn hovertime" onClick={handleBet}>
                                                             Bet
                                                             <span>₹{count} RS</span>
                                                         </button>

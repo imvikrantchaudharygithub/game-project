@@ -174,10 +174,9 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
             {/* <div className="game-popup-body"> */}
                            {togglebankForm && (
                              <form onSubmit={bankform.handleSubmit}>
-                            <div className="p-6.5">
-                                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                                    <div className="w-full xl:w-1/2">
-                                        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                <div className="form-row d-flex">
+                                    <div className="form-group">
+                                        <label className="form-label">
                                             Bank Name
                                         </label>
                                         <input
@@ -185,15 +184,15 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                             name="bankname"
                                             value={bankform.values.bankname} onChange={bankform.handleChange}
                                             placeholder="Enter your Bank Name"
-                                            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                            className="form-control"
                                         />
                                         {/* <p className="text-sm m-1 p-0 text-danger">Bank name is required</p> */}
                                     </div>
 
-                                    <div className="w-full xl:w-1/2">
+                                    <div className="form-group">
 
 
-                                        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                        <label className="form-label">
                                             Account Name
                                         </label>
                                         <input
@@ -201,12 +200,12 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                             name="holdername"
                                             value={bankform.values.holdername} onChange={bankform.handleChange}
                                             placeholder="Enter your Account Name"
-                                            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                            className="form-control"
                                         />
                                     </div>
-                                </div>
-                                <div className="mb-4.5">
-                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                
+                                <div className="form-group">
+                                    <label className="form-label">
                                         Account No.
                                     </label>
                                     <input
@@ -214,12 +213,12 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                         name="accountno"
                                         value={bankform.values.accountno} onChange={bankform.handleChange}
                                         placeholder="Enter your Account No."
-                                        className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                        className="form-control"
                                     />
                                 </div>
 
-                                <div className="mb-4.5">
-                                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                <div className="form-group">
+                                    <label className="form-label">
                                         IFSC
                                     </label>
                                     <input
@@ -227,14 +226,11 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                         name="ifsc"
                                         value={bankform.values.ifsc} onChange={bankform.handleChange}
                                         placeholder="Enter your IFSC"
-                                        className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                        className="form-control"
                                     />
                                 </div>
-
-
-                                <div className="mb-4.5 flex flex-col gap-6 xl:flex-row">
-                                    <div className="w-full xl:w-1/2">
-                                        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                    <div className="form-group">
+                                        <label className="form-label">
                                             UPI
                                         </label>
                                         <input
@@ -242,12 +238,12 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                             name="upi"
                                             value={bankform.values.upi} onChange={bankform.handleChange}
                                             placeholder="Enter the UPI"
-                                            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                                            className="form-control"
                                         />
                                         {/* <p className="text-sm m-1 p-0 text-danger">Bank name is required</p> */}
                                     </div>
-                                    <div className="w-full xl:w-1/2">
-                                        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+                                    <div className="form-group">
+                                        <label className="form-label">
                                             Attach file
                                         </label>
                                         <input
@@ -270,13 +266,12 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                             ></input>
 
                                     </div>
-                                </div>
                                 {/* {imagePreview && (
                                     <div>
                                         <img src={imagePreview} alt="Selected Image" style={{ maxWidth: '100%', height: 'auto' }} />
                                     </div>
                                 )} */}
-
+                                </div>
 
 
 
@@ -284,7 +279,6 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                     {loader ? "Loading.." : "Add Account"}
                                     {/* {useralldata?.bankdetails !=0 ? "bank available.." : "not available"} */}
                                 </button>
-                            </div>
                              </form>
                              )}
                              {/* </div>
