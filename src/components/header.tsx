@@ -343,10 +343,10 @@ console.log("search", openSearch)
                         <input type="checkbox" id="agree1" name="agree1" value="Bike"></input>
                         <label htmlFor="agree1"> I agree to the i am at least 18 years old</label>
                       </div>
-                      <div className="form-group checkbox">
+                      {/* <div className="form-group checkbox">
                         <input type="checkbox" id="agree2" name="agree2" value="Bike"></input>
                         <label htmlFor="agree2"> I agree to receive marketing promotions from bc.ai.</label>
-                      </div>
+                      </div> */}
                       <div className="form-group">
                         <button type="submit" disabled={loader} className="anchor-button">{loader ? 'Loading..': 'Sign Up'}</button>
                       </div>

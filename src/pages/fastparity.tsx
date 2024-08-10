@@ -20,7 +20,7 @@ import {
 } from '../slices/popupSlice';
 import io from 'socket.io-client';
 import useSocket from "@/hooks/useSocket";
-import apiService, { apipost } from "./services/apiService";
+import apiService, { apipost,get } from "./services/apiService";
 import { setUser } from "@/slices/userSlice";
 import { error } from "console";
 export default function Fastparity() {
@@ -37,6 +37,8 @@ export default function Fastparity() {
     const [winResultdata,setWinResultdata]=useState<any>([])
     const[betwinHistory,setBetwinHistory]=useState<any>([])
     const widthPercent = (timer / 30) * 100;
+
+    const [userwinHistory,setUserwinHistory]=useState<any>([])
 
  
     const initialObjectState = {
@@ -112,6 +114,25 @@ export default function Fastparity() {
         updateObject("amount", count)
     }, [count]);
 
+    const savewinHistory = async (data:any) => {
+        await apipost("/wininghistory",data).then((res: any) => {
+            console.log("wininghistory", res.data)
+            getwinHistory()
+            
+        }).catch((err: any) => {
+            console.log("wininghistory  api err", err)
+        })
+    }
+    const getwinHistory = async () => {
+        await get(`/wininghistory/${user?.id}`).then((res: any) => {
+            console.log("get-wininghistory", res?.data?.winingHistory)
+            setUserwinHistory(res?.data?.winingHistory)
+            
+        }).catch((err: any) => {
+            console.log("getwininghistory  api err", err)
+        })
+    }
+   
     useEffect(() => {
         if (timer == 8) {
             console.log("you can send data", list)
@@ -131,7 +152,7 @@ export default function Fastparity() {
         if (timer === 0) {
             socket.on('previousresults',(previousResults:any)=>{
                 setBetwinHistory(previousResults)
-                    console.log('winhistory',previousResults,betwinHistory)
+                    // console.log('winhistory',previousResults,betwinHistory)
             })
             
             setObject(initialObjectState)
@@ -141,7 +162,9 @@ export default function Fastparity() {
                 filterBetOn(list,winResult?.smallestColor,winResult?.smallestNumber).then(async(filterdata:any)=>{
                     console.log('declaredresult -filter data',filterdata)
                     setWinResultdata(filterdata)
-                  
+                    if(filterdata){
+                    savewinHistory(filterdata)
+                    }
                     const totalAmount = await filterdata?.reduce((total:any, item:any) => total + item.amount, 0);
                  
             const payload ={id:user?.id,amount:totalAmount,condition:"addamount"}
@@ -240,6 +263,11 @@ export default function Fastparity() {
         console.log("selected number value", numvalue)
         setBetnumber(numvalue)
         updateObject('beton', String(numvalue))
+    }
+    const switchWinHistory = ()=>{
+        toggleTab(3)
+        getwinHistory()
+
     }
    
 
@@ -369,93 +397,54 @@ export default function Fastparity() {
                                                 ))}
                                             </div>
                                         </div>
-                                        {/* <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
-                                            <div className="probability-title">1000 rounds</div>
-                                            <div className="probability-main">
-                                                <div className="probability-grid d-grid">
-                                                    <div className="grid-wrapper">
-                                                        <div className="probability-num">G</div>
-                                                        <div className="probability-progress">
-                                                            <div className="progress-color green"></div>
-                                                            <div className="progress-num">429</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <table className="probability-table">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                            <td>
-                                                                <div className="table-num">2</div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                            <td className="tdnum">
-                                                                113
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                        <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
+                                            <div className="probability-title">Your Wins</div>
+                                            <div className="continuous-main">
+                                                <div className="table-responsive">
+                                               
+                                                <table className="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Period</th>
+                                                                <th>Bet Price</th>
+                                                                <th>Win Price</th>
+                                                                <th>Bet</th>
+                                                                {/* <th>Result</th> */}
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {userwinHistory && userwinHistory?.slice().reverse().map((item: any) => (
+                                                                <tr key={item._id}>
+                                                                    <td className="">
+                                                                        {item?.timeperiod}
+                                                                    </td>
+                                                                    <td className="">
+                                                                    ₹ {item?.beton ===  'Violet' ? item?.amount/3 : item?.amount/2}
+                                                                    </td>
+                                                                    <td className="">
+                                                                        ₹ {item?.amount}
+                                                                    </td>
+                                                                    <td className="result">
+                                                                        <div className={`flex justify-center items-center rounded-full w-10 h-10 ${item?.beton === 'Green' ? 'bg-[#3bc016]' :
+                                                                                item?.beton  === 'Violet' ? 'bg-[#814cf4]' :
+                                                                                item?.beton  === 'Red' ? 'bg-[#f42525]' :
+                                                                                        'bg-white text-black text-xl font-bold'
+                                                                            }`}>{item?.beton}</div>
+                                                                    </td>
+
+                                                                </tr>
+                                                            ))}
+                                                            {!userwinHistory.length && (<p>No Win yet</p>)}
+                                                        </tbody>
+                                                    </table>
+                                              </div>
                                             </div>
-                                        </div> */}
+                                        </div>
                                     </div>
                                     <div className="fastparity-panel-tab d-flex">
                                         <div className={toggleState === 1 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(1)}>Continuous</div>
                                         <div className={toggleState === 2 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(2)}>Record</div>
-                                        {/* <div className={toggleState === 3 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(3)}>Probability</div> */}
+                                        <div className={toggleState === 3 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => switchWinHistory()}>Win History</div>
                                     </div>
                                 </div>
                                 <div className="fastparity-bet d-flex">
