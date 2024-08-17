@@ -407,7 +407,7 @@ body.scroll{overflow-y: hidden;}
 
 /* footer-start */
 .footer{background: var(--shadow-color); }
-.footer-top{grid-template-columns: repeat(6,1fr); gap: 40px; border-bottom: 1px solid var(--pra-color);}
+.footer-top{grid-template-columns: repeat(1,1fr); gap: 40px; border-bottom: 1px solid var(--pra-color);}
 .footer-col .gamexxsheading{display: flex; align-items: center; justify-content: space-between; font-weight: 600; margin-bottom: 30px;}
 .footer-col .gamexxsheading span{display: none;}
 .footer-col .gamexxsheading svg path{stroke: var(--pra-color);}
@@ -622,6 +622,24 @@ body.scroll{overflow-y: hidden;}
 .edit-btn{width: 50px; height: 50px; justify-content: center; background: var(--primary-color); padding: 10px; border-radius: 50%; box-shadow: 0 0 0; border: 0; margin: 0 auto; cursor: pointer;}
 .edit-btn svg{width: 25px; height: 25px;}
 .edit-btn svg path{fill: var(--white-color);}
+
+
+.otp-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 300px;
+  margin: 20px auto;
+}
+
+.otp-input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #000;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1499px) {
 .fastparity-bet-box .fastparity-bet-amount, .fastparity-bet-box .fastparity-bet-amount{width: 100%;}

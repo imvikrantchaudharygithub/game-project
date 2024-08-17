@@ -68,7 +68,7 @@ export default function Useraccount() {
                     <div className="latest-content">
                         <div className={toggleState === 1 ? "content-tab active" : "content-tab"}>
                             <div className="user-cash-main">
-                                <Deposit userData={user} />
+                                <Deposit userData={user} useralldata={userData} refreshuserdata={refreshuserdata}/>
                             </div>
                         </div>
                         <div className={toggleState === 2 ? "content-tab active" : "content-tab"}>

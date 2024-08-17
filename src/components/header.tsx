@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, } from "react";
+import { useEffect, useRef, useState, } from "react";
 import AccountModal from '../components/AccountModal';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -26,14 +26,16 @@ import toast, { Toaster } from 'react-hot-toast';
 import Search from "./Search";
 
 export default function Header() {
-
+  const inputRefs = useRef([]);
   const dispatch = useAppDispatch();
   const isTokenSet = useAppSelector((state:any) => state.token.isTokenSet);
   const user = useAppSelector((state:any) => state.user);
   const { parentPopupOpen, signInOpen, signUpOpen, userInfoOpen,resetPasswordOpen } = useAppSelector((state:any) => state.popup);
 
-const[openSearch,setopenSearch]=useState(false)
+  const[openSearch,setopenSearch]=useState(false)
   const router = useRouter();
+
+  const[activeotpForm,setActiveotpForm]=useState(false)
   useEffect(() => {
       const token = getToken()
       if (token && !isTokenSet) {
@@ -85,17 +87,17 @@ const[openSearch,setopenSearch]=useState(false)
 
   const signin = useFormik({
     initialValues: {
-        email: '',
+        phone: '',
         password: ''
     },
     validationSchema: Yup.object({
-        email: Yup.string().email('Invalid email address').required('Required'),
+      phone: Yup.string().matches(/^\d{10}$/, 'Invalid phone number').required('Required'),
         password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required')
     }),
     onSubmit: async(values: any) => {
         setloader(true)
         const payload ={
-            email:values.email,
+            phone:values.phone,
             password:values.password
         }
         try{
@@ -109,7 +111,7 @@ const[openSearch,setopenSearch]=useState(false)
                 dispatch(closeParentPopup())
                 // router.push(`/account`);
             }).catch((err:any)=>{
-                toast.error(err.response.data.message,{position:"top-right"})
+                toast.error(err?.response?.data?.message ? err.response.data.message:'Something went wrong',{position:"top-right"})
              setloader(false)
              console.log("signin api err",err)
             })
@@ -137,25 +139,25 @@ const singup = useFormik ({
       setloader(true)
       console.log("form values", values)
       const payload ={
-          username:values.name,
-          email:values.email,
           phone:values.phone,
-          password:values.password,
-          referral_code:values.referral_code
+          referral_code:singup.values.referral_code
+
       }
       try{
-     await apipost("/signup",payload).then((res:any)=>{
-         console.log("user-signup", res.data)
-         setloader(false)
-         singup.resetForm()
-         setLocaltoken(res?.data?.token)
-         dispatch(setToken(res?.data?.token));
-        dispatch(closeParentPopup())
-     }).catch((err:any)=>{
-     
-      setloader(false)
-      console.log("sign api err",err)
-     })
+        await apipost("/send-otp",payload).then((res:any)=>{
+          console.log("user-send-otp", res.data)
+          setloader(false)
+          setActiveotpForm(prev => !prev)
+         //  singup.resetForm()
+         //  setLocaltoken(res?.data?.token)
+         //  dispatch(setToken(res?.data?.token));
+         // dispatch(closeParentPopup())
+      }).catch((err:any)=>{
+       toast.error(err?.response?.data?.message,{position:"top-right"})
+      
+       setloader(false)
+       console.log("sign api err",err)
+      })
   }catch(err){
       console.log("user-signup", err)
   }
@@ -177,7 +179,105 @@ const handleCloseSearch = () => {
 setopenSearch(false)
 console.log("search", openSearch)
 };
-  
+
+// const [timeLeft, setTimeLeft] = useState(120); // 2 minutes in seconds
+
+// useEffect(() => {
+//   if (timeLeft > 0) {
+//     const timer = setInterval(() => {
+//       setTimeLeft(timeLeft - 1);
+//     }, 1000);
+//     return () => clearInterval(timer);
+//   }
+// }, [timeLeft]);
+const saveSignup = async()=>{
+  const payload ={
+    username:singup.values.name,
+    email:singup.values.email,
+    phone:singup.values.phone,
+    password:singup.values.password,
+    referral_code:singup.values.referral_code
+}
+await apipost("/signup",payload).then((res:any)=>{
+  console.log("user-signup", res.data)
+  setloader(false)
+  setActiveotpForm(prev => !prev)
+  singup.resetForm()
+  otpformik.resetForm()
+  setLocaltoken(res?.data?.token)
+  dispatch(setToken(res?.data?.token));
+ dispatch(closeParentPopup())
+ toast.success("Sign Up Succesfull",{position:"top-right"})
+
+}).catch((err:any)=>{
+toast.error(err?.response?.data?.message,{position:"top-right"})
+
+setloader(false)
+console.log("sign api err",err)
+})
+}
+
+
+  const otpformik = useFormik({
+    initialValues: {
+      otp: ['', '', '', '', '', ''],
+    },
+    validationSchema: Yup.object({
+      otp: Yup.array()
+      .of(
+        Yup.string().matches(/^\d$/, 'Must be a digit')
+      )
+      .test('otp-complete', 'Please enter a valid 6-digit OTP', (otp) => otp?.every((value:any) => /^\d$/.test(value))),
+  }),
+    onSubmit: async(values) => {
+      setloader(true)
+      const otp = values.otp.join('');
+      console.log('OTP submitted:', otp,singup.values.phone);
+      // Handle OTP verification logic here
+      const payload={
+        phone:singup.values.phone,
+        otp:otp,
+      }
+
+      await apipost("/verify-otp",payload).then((res:any)=>{
+        console.log("user-verify-otp", res.data)
+        setloader(false)
+        toast.success("OTP verified successfully",{position:"top-right"})
+        saveSignup()
+      //   setLocaltoken(res?.data?.token)
+      //   dispatch(setToken(res?.data?.token));
+      //  dispatch(closeParentPopup())
+
+    }).catch((err:any)=>{
+      
+      setloader(false)
+      toast.error(err?.response?.data?.message,{position:"top-right"})
+     console.log("sign api err",err)
+    })
+    },
+  });
+ 
+ 
+
+  const handleChange = (e:any, index:any) => {
+    const { value } = e.target;
+    if (/^\d$/.test(value)) {
+      otpformik.setFieldValue(`otp.${index}`, value);
+      if (index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1].focus();
+      }
+    }
+  };
+  const handleKeyDown = (e:any, index:any) => {
+    if (e.key === 'Backspace') {
+      if (otpformik.values.otp[index]) {
+        otpformik.setFieldValue(`otp.${index}`, '');
+      } else if (index > 0) {
+        inputRefs.current[index - 1].focus();
+        otpformik.setFieldValue(`otp.${index - 1}`, '');
+      }
+    }
+  };
     return (
       <>
         <section className="header">
@@ -258,7 +358,7 @@ console.log("search", openSearch)
                     <Image width={48} height={48} className="icon" src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
                   </div>
                   <div className="amountnum">
-                  {user?.amount}
+                  ₹ {user?.amount}
                   </div>
                 </div>
                 </Link>
@@ -280,7 +380,7 @@ console.log("search", openSearch)
                   <div className="form-box">
                     <form onSubmit={signin.handleSubmit}>
                       <div className="form-group">
-                        <input type="email" name="email" value={signin.values.email} onChange={signin.handleChange} className="form-control" placeholder="Email"></input>
+                        <input type="text" name="phone" value={signin.values.phone} onChange={signin.handleChange} className="form-control" placeholder="Phone"></input>
                       </div>
                       <div className="form-group">
                         <input type="password" name="password" value={signin.values.password} onChange={signin.handleChange} className="form-control" placeholder="Login Password"></input>
@@ -291,7 +391,7 @@ console.log("search", openSearch)
                       </div>
                     </form>
                     <div className="create-txt">
-                      <p>New to bc.ai?</p>
+                      <p>New to Money Monkey?</p>
                       <div className="create-btn" onClick={() => dispatch(openSignUp())}>Create account</div>
                     </div>
                   </div>
@@ -318,8 +418,9 @@ console.log("search", openSearch)
                 )}
                 {signUpOpen && (
                 <div className="game-signin">
-                  <div className="gamexxsheading">Sign Up</div>
-                  <div className="form-box">
+                  <div className="gamexxsheading">{!activeotpForm ? 'Sign Up' : 'OTP'}</div>
+                 {!activeotpForm ? (
+                   <div className="form-box">
                     <form onSubmit={singup.handleSubmit}>
                       <div className="form-group">
                         <input type="text" name="name" value={singup.values.name} onChange={singup.handleChange}  className="form-control" placeholder="User Name"></input>
@@ -357,9 +458,52 @@ console.log("search", openSearch)
                       
                     </div>
                   </div>
+                  ) :(
+                  <div className="form-box">
+                  <form onSubmit={otpformik.handleSubmit}>
+      <div className="otp-container">
+        {otpformik.values.otp.map((_, index) => (
+          <input
+            key={index}
+            type="text"
+            name={`otp.${index}`}
+            value={otpformik.values.otp[index]}
+            onChange={(e) => handleChange(e, index)}
+            onKeyDown={(e) => handleKeyDown(e, index)}
+            ref={(el) => (inputRefs.current[index] = el)}
+            className="otp-input"
+            maxLength={1}
+            inputMode="numeric"
+          />
+        ))}
+      </div>
+      {otpformik.errors.otp && otpformik.touched.otp ? (
+        <div style={{ color: 'red' }}>{otpformik.errors.otp}</div>
+      ) : null}
+       <div className="create-txt">
+                      <p>OTP send to you Number {singup.values.phone}</p>
+                      <div className="create-btn w-[10%]"  onClick={()=>setActiveotpForm(prev => !prev)}> 
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 101 101" id="Edit"><path d="M82.2 79.2H18.8c-1.3 0-2.4 1.1-2.4 2.4s1.1 2.4 2.4 2.4h63.4c1.3 0 2.4-1.1 2.4-2.4s-1.1-2.4-2.4-2.4zM16.5 58.2l-.1 11.3c0 .6.2 1.3.7 1.7.5.4 1.1.7 1.7.7l11.3-.1c.6 0 1.2-.3 1.7-.7l38.8-38.8c.9-.9.9-2.5 0-3.4L59.4 17.7c-.9-.9-2.5-.9-3.4 0l-7.8 7.8-31 31c-.5.5-.7 1.1-.7 1.7zm49-27.6L61.1 35l-7.8-7.8 4.4-4.4 7.8 7.8zM21.3 59.2l28.6-28.6 7.8 7.8L29.1 67h-7.8v-7.8z" fill="#3bc016" className="color000000 svgShape"></path></svg>
+                      {/* <span>Edit</span> */}
+                      </div>
+                      
+                    </div>
+                    {/* <div className="timer">
+        {timeLeft > 0 ? (
+          <span>Time left: {Math.floor(timeLeft / 60)}:{String(timeLeft % 60).padStart(2, '0')}</span>
+        ) : (
+          <span>OTP expired. Please request a new one.</span>
+        )}
+      </div> */}
+      <button type="submit" disabled={loader} className="anchor-button">
+       {loader ? 'Submitting' : 'Submit OTP'} 
+      </button>
+    </form>
+                  </div>
+                  )}
                 </div>
                 )}
-                <div className="other-sign-wrap">
+                {/* <div className="other-sign-wrap">
                   <p>Log in directly with</p>
                   <ul className="login-list d-flex align">
                     <li>
@@ -373,7 +517,7 @@ console.log("search", openSearch)
                       </Link>
                     </li>
                   </ul>
-                </div>
+                </div> */}
             </div>
           </div>
         </div>
@@ -423,7 +567,7 @@ console.log("search", openSearch)
                 <div className="icon">
                   <Image width={48} height={48} src={'/assets/images/icons/amount-icon.png'} alt=""></Image>
                 </div>
-               {user?.amount}
+                ₹ {user?.amount}
               </Link>
             </li>
             )}

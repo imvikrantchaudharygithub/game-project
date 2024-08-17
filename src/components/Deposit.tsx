@@ -6,9 +6,13 @@ import * as Yup from 'yup';
 import api from "../pages/services/apiService";
 import apiService from "../pages/services/apiService";
 import toast, { Toaster } from 'react-hot-toast';
+import moment from 'moment';
 
 
-export default function Deposit({userData}:any) {
+export default function Deposit({userData,useralldata,refreshuserdata}:any) {
+    const dateformate = (date: any) => {
+        return moment(date).format('LL LT')
+      }
     const [toggleState, setToggleState] = useState(1);
     const [bankDetail, setBankDetail] = useState<any>()
     const [selectedBank, setSelectedBank] = useState<any>()
@@ -65,10 +69,13 @@ export default function Deposit({userData}:any) {
                 });
                 console.log('add-transaction', res.data);
                 setLoader(false);
+                if (res.data) {
                 deposit.resetForm();
                 setImagePreview(null); // Reset image preview
+                refreshuserdata()
                 toast.success('Deposit Request sent Successfully', { position: 'top-right' });
                 // router.push(`/account`);
+                }
             } catch (err:any) {
                 toast.error(err.response.data.message, { position: 'top-right' });
                 setLoader(false);
@@ -206,7 +213,7 @@ export default function Deposit({userData}:any) {
                                     </form>
                                 </div>
                             </div>
-                            <div className="col">
+                            {/* <div className="col">
                                 <div className="deposit-card user-pay-text d-flex align">
                                     <p>How to transfer upi to bank click here www.upitobank.com</p>
                                     <Link href="#" className="anchor-button payment-btn">
@@ -216,7 +223,7 @@ export default function Deposit({userData}:any) {
                                         </span>
                                     </Link>
                                 </div>
-                            </div>
+                            </div> */}
                             
                         </div>
                     </div>
@@ -224,40 +231,19 @@ export default function Deposit({userData}:any) {
                     </div>
                 </div>
                 <div className="col bottom-col">
-                        <div className="deposit-card bank-text">
-                            <div className="gamemdheading">withdraw discription</div>
-                            <ul>
-                                <li>
-                                    1. This form is for withdrawing the amount from the main wallet only.
-                                </li>
-                                <li>
-                                    2. The bonus wallet amount cannot be withdrawn by this form.
-                                </li>
-                                <li>
-                                    3. Do not put Withdraw request without betting with deposit amount. Such activity may be identified as Suspicious
-                                </li>
-                                <li>
-                                    4. If multiple users are using same withdraw account then all the linked users will be blocked.
-                                </li>
-                                <li>
-                                    5. Maximum Withdraw time is 45 minutes then only complain on WhatsApp number.
-                                </li>
-                            </ul>
-                        </div>
-                </div>
-                <div className="col bottom-col">
                         <div className="deposit-card withdraw-table">
-                            {/* <div className="table-responsive">
+                          <div className="table-responsive">
                                 <table className="table">
                                     <thead>
                                         <tr>
                                             <th>AMOUNT</th>
                                             <th>STATUS</th>
+                                            <th>UTR</th>
                                             <th>DATE</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       {userWithdrawalList?.map((item:any)=>(
+                                       {useralldata?.transaction?.slice().reverse().map((item:any)=>(
                                         <tr key={item._id}>
                                             <td>
                                             ₹ {item?.amount}
@@ -274,14 +260,40 @@ export default function Deposit({userData}:any) {
                       {item?.status}
                     </p>
                                             </td>
+                                            <td>
+                                            {item?.transactionNumber}
+                                            </td>
                                             <td>{dateformate(item?.createdAt)}</td>
                                         </tr>
                                         ))}
                                     </tbody>
                                 </table>
-                            </div> */}
+                            </div> 
                         </div>
                 </div>
+                <div className="col bottom-col">
+                        <div className="deposit-card bank-text">
+                            <div className="gamemdheading">Deposit Discription</div>
+                            <ul>
+                                <li>
+                                    1. Deposit money only in the below available accounts to get the fastest credits and avoid possible delays.
+                                </li>
+                                <li>
+                                    2. Deposits made 45 minutes after the account removal from the site are valid & will be added to their wallets.
+                                </li>
+                                <li>
+                                    3. Site is not responsible for money deposited to Old, Inactive or Closed accounts.
+                                </li>
+                                <li>
+                                    4. NEFT receiving time varies from 40 minutes to 2 hours.
+                                </li>
+                                <li>
+                                    5. In case of account modification: payment valid for 1 hour after changing account details in deposit page
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+              
             </section>
         </>
     );

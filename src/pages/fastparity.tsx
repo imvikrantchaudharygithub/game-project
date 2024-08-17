@@ -162,7 +162,7 @@ export default function Fastparity() {
                 filterBetOn(list,winResult?.smallestColor,winResult?.smallestNumber).then(async(filterdata:any)=>{
                     console.log('declaredresult -filter data',filterdata)
                     setWinResultdata(filterdata)
-                    if(filterdata){
+                    if(filterdata.length !=0){
                     savewinHistory(filterdata)
                     }
                     const totalAmount = await filterdata?.reduce((total:any, item:any) => total + item.amount, 0);
@@ -273,7 +273,7 @@ export default function Fastparity() {
 
     return (
         <>
-            <Breadcrumb></Breadcrumb>
+            <Breadcrumb page={"Color Casino"}></Breadcrumb>
             {timer == 0 && (  <WinModal resultdata={winResult} resultFilteritems={winResultdata}/>)}
             <section className="fastparity">
                 <div className="container">
@@ -368,7 +368,9 @@ export default function Fastparity() {
                                                             ))}
                                                         </tbody>
                                                     </table>
-                                                    {!list.length && (<p className="text-center">NO bet yet</p>)}
+                                                    {!list.length && (<div className="text-center">No bet yet
+                                                    
+                                                    </div>)}
                                                 </div>
 
                                                 {/* <div className="continuous-item">
