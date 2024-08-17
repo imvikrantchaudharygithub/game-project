@@ -26,7 +26,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Search from "./Search";
 
 export default function Header() {
-  const inputRefs = useRef([]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const dispatch = useAppDispatch();
   const isTokenSet = useAppSelector((state:any) => state.token.isTokenSet);
   const user = useAppSelector((state:any) => state.user);
@@ -261,19 +261,20 @@ console.log("sign api err",err)
 
   const handleChange = (e:any, index:any) => {
     const { value } = e.target;
-    if (/^\d$/.test(value)) {
+    if (/^\d?$/.test(value)) {
       otpformik.setFieldValue(`otp.${index}`, value);
-      if (index < inputRefs.current.length - 1) {
-        inputRefs.current[index + 1].focus();
+      if (value && index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1]?.focus();
       }
     }
   };
+
   const handleKeyDown = (e:any, index:any) => {
     if (e.key === 'Backspace') {
       if (otpformik.values.otp[index]) {
         otpformik.setFieldValue(`otp.${index}`, '');
       } else if (index > 0) {
-        inputRefs.current[index - 1].focus();
+        inputRefs.current[index - 1]?.focus();
         otpformik.setFieldValue(`otp.${index - 1}`, '');
       }
     }
@@ -470,7 +471,7 @@ console.log("sign api err",err)
             value={otpformik.values.otp[index]}
             onChange={(e) => handleChange(e, index)}
             onKeyDown={(e) => handleKeyDown(e, index)}
-            ref={(el) => (inputRefs.current[index] = el)}
+            ref={(el) => { inputRefs.current[index] = el; }}
             className="otp-input"
             maxLength={1}
             inputMode="numeric"
