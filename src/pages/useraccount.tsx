@@ -7,10 +7,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { useRouter } from 'next/router';
 import { get } from "./services/apiService";
+import { setUser } from "@/slices/userSlice";
 
 
 export default function Useraccount() {
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const user = useAppSelector((state:any) => state.user);
 
@@ -36,7 +38,7 @@ export default function Useraccount() {
             await get(`/getuserdata`).then((res: any) => {
                 console.log("userdata", res.data)
                 setUserData(res?.data?.user)
-                // dispatch(setUser({ id: res?.data?.user?._id, amount: res?.data?.user?.balance}));
+                dispatch(setUser({ id: res?.data?.user?._id, amount: res?.data?.user?.balance}));
                 // setEditvalue(res?.data?.user)
             }).catch((err: any) => {
                 console.log(err)

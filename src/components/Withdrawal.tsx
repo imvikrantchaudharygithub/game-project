@@ -49,7 +49,7 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                     withdrawal.resetForm()
                     toast.success("Withdrawal Request sent Succesfull",{position:"top-right"})
                     userWithdrawal(userData?.id)
-                   
+                    refreshuserdata()
                     // router.push(`/account`);
                 }).catch((err:any)=>{
                     toast.error(err.response.data.message,{position:"top-right"})
@@ -338,7 +338,7 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       {userWithdrawalList?.map((item:any)=>(
+                                       {userWithdrawalList?.slice().reverse().map((item:any)=>(
                                         <tr key={item._id}>
                                             <td>
                                             ₹ {item?.amount}
