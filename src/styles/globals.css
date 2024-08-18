@@ -209,7 +209,7 @@ body.scroll{overflow-y: hidden;}
 .header-right .anchor-button:last-child{margin-right: 0}
 .mobile-sticky-links{display: none;}
 
-.game-popup.login-popup {z-index: 1234;}
+.game-popup.login-popup {z-index: 123456;}
 .login-popup .game-popup-wrapper{width: 450px; padding: 20px;}
 .login-popup .game-popup-wrapper .gamexxsheading{color: var(--white-color); font-weight: 600; margin-bottom: 20px;}
 .login-popup .game-popup-wrapper .forgot-btn{width: max-content; margin-left: auto; color: var(--white-color); text-align: right; text-decoration: underline; cursor: pointer;}
@@ -510,12 +510,12 @@ body.scroll{overflow-y: hidden;}
 .fastparity-bet-box .fastparity-bet-amount, .fastparity-bet-box .fastparity-bet-amount{width: 47%;}
 .fastparity-bet-box .count{padding: 8px 10px; background-color: var(--bg-color); border-radius: 50px; margin-bottom: 5px;}
 .fastparity-bet-box .count .count-btn{width: 25px; height: 25px; border: 1px solid var(--pra-color); font-size: 18px; line-height: 25px; color: var(--pra-color); padding: 3px; border-radius: 50%; display: flex; align-items: center; justify-content: center;}
-.fastparity-bet-box .count-num{width: 50%; font-size: 18px; color: var(--pra-color); font-weight: 600; text-align: center; background-color: transparent; border: 0; border-radius: 0;}
+.fastparity-bet-box .count-num{width: 48%; font-size: 18px; color: var(--pra-color); font-weight: 600; text-align: center; background-color: transparent; border: 0; border-radius: 0;}
 .fastparity-bet-box .fastparity-num-list{grid-template-columns: repeat(2,1fr);}
 .fastparity-bet-box .fastparity-bet-amount .bet-btn{width: 100%; height: 100%; font-size: 20px; border: 1px solid var(--white-color); border-radius: 15px;}
 .fastparity-bet-box .fastparity-bet-amount .bet-btn span{width: 100%; display: block;}
 .fastparity-panel-box .fastparity-panel.active{display: block;}
-.game-popup.win-popup{text-align: center;}
+.game-popup.win-popup{text-align: center; z-index: 123;}
 .win-popup .game-popup-wrapper{width: 400px; padding: 120px 20px 30px; border-radius: 12px; background: #eccdac; color: var(--black-color);}
 .win-popup .congratulation-img{width: 250px; margin: 0 auto; position: absolute; top: -130px; left: 0; right: 0;}
 .win-popup .game-popup-wrapper .gamelgheading{background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #2f2),color-stop(0.75, #2f2), color-stop(0.9, #ff2), color-stop(1, #f22) );
@@ -640,6 +640,8 @@ body.scroll{overflow-y: hidden;}
   border-radius: 5px;
   color: #000;
 }
+
+.monky-banner-mid{width: 550px; margin: 0 auto;}
 
 @media screen and (min-width: 768px) and (max-width: 1499px) {
 .fastparity-bet-box .fastparity-bet-amount, .fastparity-bet-box .fastparity-bet-amount{width: 100%;}
@@ -790,6 +792,8 @@ body.scroll{overflow-y: hidden;}
 .win-popup .win-number .gamexsheading{width: 100%; margin-bottom: 15px;}
 .win-popup .win-number{justify-content: center;}
 .bank-card .form-row .form-group{width: 100%;}
+
+.monky-banner-mid{width: 100%;}
 } 
 
 @media only screen and (max-width: 419px){

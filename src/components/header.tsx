@@ -397,18 +397,18 @@ export default function Header() {
             <div className={menuActive ? 'header-menu active' : 'header-menu'}>
               <ul className="menu">
                 <li>
-                  <Link href='#'>
-                    Casino
+                  <Link href='/fastparity'>
+                    Color Casino
                   </Link>
-                  <ul className="sub-menu">
+                  {/* <ul className="sub-menu">
                     <li>
                       <Link href='#'>
                         Casino
                       </Link>
                     </li>
-                  </ul>
+                  </ul> */}
                 </li>
-                <li>
+                {/* <li>
                   <Link href='#'>
                     Casino
                   </Link>
@@ -422,7 +422,7 @@ export default function Header() {
                   <Link href='#'>
                     Casino
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="header-right d-flex align">
