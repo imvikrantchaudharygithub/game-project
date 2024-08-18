@@ -304,28 +304,6 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                     
                 </div>
                 <div className="col bottom-col">
-                        <div className="deposit-card bank-text">
-                            <div className="gamemdheading">withdraw discription</div>
-                            <ul>
-                                <li>
-                                    1. This form is for withdrawing the amount from the main wallet only.
-                                </li>
-                                <li>
-                                    2. The bonus wallet amount cannot be withdrawn by this form.
-                                </li>
-                                <li>
-                                    3. Do not put Withdraw request without betting with deposit amount. Such activity may be identified as Suspicious
-                                </li>
-                                <li>
-                                    4. If multiple users are using same withdraw account then all the linked users will be blocked.
-                                </li>
-                                <li>
-                                    5. Maximum Withdraw time is 45 minutes then only complain on WhatsApp number.
-                                </li>
-                            </ul>
-                        </div>
-                </div>
-                <div className="col bottom-col">
                         <div className="deposit-card withdraw-table">
                             <div className="table-responsive">
                                 <table className="table">
@@ -363,6 +341,29 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                             </div>
                         </div>
                 </div>
+                <div className="col bottom-col">
+                        <div className="deposit-card bank-text">
+                            <div className="gamemdheading">withdraw discription</div>
+                            <ul>
+                                <li>
+                                    1. This form is for withdrawing the amount from the main wallet only.
+                                </li>
+                                <li>
+                                    2. The bonus wallet amount cannot be withdrawn by this form.
+                                </li>
+                                <li>
+                                    3. Do not put Withdraw request without betting with deposit amount. Such activity may be identified as Suspicious
+                                </li>
+                                <li>
+                                    4. If multiple users are using same withdraw account then all the linked users will be blocked.
+                                </li>
+                                <li>
+                                    5. Maximum Withdraw time is 45 minutes then only complain on WhatsApp number.
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                
             </section>
         </>
     );
