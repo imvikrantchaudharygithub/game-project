@@ -57,7 +57,7 @@ const popupSlice = createSlice({
       }
     },
     openUserInfo: (state) => {
-      state.parentPopupOpen = true;
+      
       state.userInfoOpen = true;
       state.signInOpen = false;
       state.signUpOpen = false;
