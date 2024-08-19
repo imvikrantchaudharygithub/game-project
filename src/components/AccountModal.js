@@ -63,8 +63,8 @@ const AccountModal = ({ isOpen, onClose ,userdata ,user,logout,gotowithdrawal}) 
                       <div className="gamemdheading">100.00</div>
                     </div> */}
                     <div className="user-amount-card">
-                      <p>Friends {userdata?.referral_friends} <span className="">Withdrawl Available : <strong>{user?.amount - userdata?.referral_friends*20}</strong></span></p>
-                      <div className="gamemdheading">{user?.amount}</div>
+                      <p>Friends:{userdata?.referral_friends} <span className="">Withdrawl Available : <strong>₹{user?.amount - userdata?.referral_friends*20}</strong></span></p>
+                      <div className="gamemdheading">₹{user?.amount}</div>
                       <button type="button" className="edit-btn d-flex align cursor-pointer" onClick={gotowithdrawal}>
                         <svg width="13" height="7" viewBox="0 0 13 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M12 1L6.5 6L1 1" stroke="#474A50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

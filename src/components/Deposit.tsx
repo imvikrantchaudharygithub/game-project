@@ -189,7 +189,7 @@ export default function Deposit({userData,useralldata,refreshuserdata}:any) {
                 ) : null}
 
                                         <div className="form-group">
-                                            <label className="form-label">Coupon Code <span className="red">*</span></label>
+                                            <label className="form-label">Coupon Code</label>
                                             <input type="text" name="couponcode"
                                              onChange={deposit.handleChange} className="form-control" placeholder="Coupon Code" ></input>
                                         </div>
@@ -215,11 +215,11 @@ export default function Deposit({userData,useralldata,refreshuserdata}:any) {
                                         {deposit.touched.image && deposit.errors.image ? (
                     <div className="text-red-700">{deposit.errors.image}</div>
                 ) : null}
-                                        {imagePreview && (
+                                        {/* {imagePreview && (
                 <div>
                     <img src={imagePreview} alt="Selected Image" style={{ maxWidth: '100%', height: 'auto' }} />
                 </div>
-            )}
+            )} */}
                                         <div className="form-group">
                                             <button type="submit" disabled={loader} className="anchor-button w-full">{loader ? 'Submitting...' : 'Submit'}</button>
                                         </div>

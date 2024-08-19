@@ -348,7 +348,7 @@ export default function Fastparity() {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            {list && list?.map((item: any) => (
+                                                            {list && list?.slice().reverse().map((item: any) => (
                                                                 <tr key={item._id}>
                                                                     <td className="">
                                                                         {item?.timeperiod}
@@ -387,7 +387,7 @@ export default function Fastparity() {
                                                 <p>Fast Parity Record</p>
                                             </div>
                                             <div className="record-main d-grid">
-                                                {betwinHistory?.map((item:any,index:any)=>(
+                                                {betwinHistory?.slice().reverse().map((item:any,index:any)=>(
                                                 <div className="text-center transition-all duration-700 ease-in-out" key={item?.timestamp}>
                                                     <div className="record-txt">{index+1}</div>
                                                     <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold mx-auto ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :
@@ -522,7 +522,42 @@ export default function Fastparity() {
 
                         </div>
                     </div>
+                    <div className="col bottom-col mt-4">
+                        <div className="deposit-card bank-text">
+                            <div className="gamemdheading">Game Laws</div>
+                            <ul>
+                                <li>
+                                    1. You have own risk for play this game.
+                                </li>
+                                <li>
+                                    2. ⁠You can choose the colour, number.
+                                </li>
+                                <li>
+                                    3. You may even get addicted to this game.
+                                </li>
+                                <li>
+                                    4. You can win easily real cash in this game.
+                                </li>
+                                <li>
+                                    5. ⁠Won chances in this game colour have 33%, number have 10% and big/ small have 50% to win
+                                </li>
+                                <li>
+                                    6. ⁠Without investment you cannot withdraw the amount.
+                                </li>
+                                <li>
+                                    7. If you join the people then have a good bonus for play this game.
+                                </li>
+                                <li>
+                                    8. Your Deposit and withdraw can get within 15-20min
+                                </li>
+                                <li>
+                                    9. You can deposit your amount by bank and UPI.
+                                </li>
+                            </ul>
+                        </div>
                 </div>
+                </div>
+               
             </section>
         </>
     );
