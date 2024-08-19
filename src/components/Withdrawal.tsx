@@ -303,7 +303,8 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                     </div>
                     
                 </div>
-                <div className="col bottom-col">
+             {userWithdrawalList && (
+                   <div className="col bottom-col">
                         <div className="deposit-card withdraw-table">
                             <div className="table-responsive">
                                 <table className="table">
@@ -341,6 +342,7 @@ export default function Withdrawal({userData,useralldata,refreshuserdata}:any) {
                             </div>
                         </div>
                 </div>
+                )}
                 <div className="col bottom-col">
                         <div className="deposit-card bank-text">
                             <div className="gamemdheading">withdraw discription</div>

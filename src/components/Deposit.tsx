@@ -243,6 +243,7 @@ export default function Deposit({userData,useralldata,refreshuserdata}:any) {
                     <div className={toggleState === 2 ? "content-tab active" : "content-tab"}>
                     </div>
                 </div>
+                {useralldata?.transaction.length != 0 && (
                 <div className="col bottom-col">
                         <div className="deposit-card withdraw-table">
                           <div className="table-responsive">
@@ -284,6 +285,7 @@ export default function Deposit({userData,useralldata,refreshuserdata}:any) {
                             </div> 
                         </div>
                 </div>
+                )}
                 <div className="col bottom-col">
                         <div className="deposit-card bank-text">
                             <div className="gamemdheading">Deposit Discription</div>
