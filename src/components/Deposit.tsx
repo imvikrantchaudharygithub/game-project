@@ -114,7 +114,7 @@ export default function Deposit({userData,useralldata,refreshuserdata}:any) {
                                     <div className="gamemdheading">Bank Account</div>
                                     {selectedBank?.imagePath && (
                                     <div className="flex gap-3 border-b border-stroke dark:border-strokedark mb-2">
-                                                    <img src={`http://localhost:8000/${selectedBank?.imagePath}`} alt="Selected Image" style={{ height: 'auto' }} />
+                                                    <img src={`${process.env.NEXT_PUBLIC_SOCKETURL}/${selectedBank?.imagePath}`} alt="Selected Image" style={{ height: 'auto' }} />
 
                                 </div>
                                 )}

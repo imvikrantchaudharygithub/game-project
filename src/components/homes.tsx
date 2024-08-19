@@ -34,14 +34,14 @@ const homes = ({}) =>{
                             <div className="item">
                                 <div className="banner-card ">
                                     <Link href='#' className="relative">
-                                        <Image width={563} height={243} className="w-full hovertime" src={'/assets/images/banner.jpg'} alt="" />
+                                        <Image width={563} height={243} className="w-full hovertime" src={'/assets/images/colorgame-thumbnail.jpeg'} alt="" />
                                     </Link>
                                 </div>
                             </div>
                             <div className="item">
                                 <div className="banner-card ">
                                     <Link href='#' className="relative">
-                                        <Image width={563} height={243} className="w-full hovertime" src={'/assets/images/banner.jpg'} alt="" />
+                                    <Image width={563} height={243} className="w-full hovertime" src={'/assets/images/colorgame-thumbnail.jpeg'} alt="" />
                                     </Link>
                                 </div>
                             </div>
