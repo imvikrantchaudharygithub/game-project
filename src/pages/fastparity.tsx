@@ -31,7 +31,7 @@ export default function Fastparity() {
     const [timer, setTimer] = useState<number>(30);
     const [timeperiod, setTimeperiod] = useState<string>();
     const [betnumber, setBetnumber] = useState<number>()
-    const [count, setCount] = React.useState<number>(50);
+    const [count, setCount] = React.useState<number>(5);
     const [beton, setBeton] = useState(false)
     const [winResult,setWinResult]=useState<any>({})
     const [winResultdata,setWinResultdata]=useState<any>([])
@@ -42,7 +42,7 @@ export default function Fastparity() {
 
  
     const initialObjectState = {
-        timeperiod: '',
+        timeperiod: null,
         beton: '',
         amount: count,
         user_id: user.id
@@ -134,7 +134,7 @@ export default function Fastparity() {
     }
    
     useEffect(() => {
-        if (timer == 8) {
+        if (timer == 3) {
             console.log("you can send data", list)
             socket.on('declaredresult', (result:any) => {
                 console.log('declaredresult -result',result,list)
@@ -225,6 +225,23 @@ export default function Fastparity() {
             socket.off('timeperiod');
 
         };
+    }, [socket]);
+    useEffect(() => {
+        if (!socket) return;
+        if(object?.timeperiod==null){
+            socket.on('gettimeperiod', (period: string) => {
+                // console.log('gettimeperiod:', period);
+                setTimeperiod(period)
+                updateObject('timeperiod', period)
+            });
+
+        }
+        if(betwinHistory.length===0){
+        socket.on('previousresults',(previousResults:any)=>{
+            setBetwinHistory(previousResults)
+                // console.log('winhistory',previousResults,betwinHistory)
+            })
+    }
     }, [socket]);
 
 
@@ -387,7 +404,7 @@ export default function Fastparity() {
                                                 <p>Fast Parity Record</p>
                                             </div>
                                             <div className="record-main d-grid">
-                                                {betwinHistory?.slice().reverse().map((item:any,index:any)=>(
+                                                {betwinHistory?.map((item:any,index:any)=>(
                                                 <div className="text-center transition-all duration-700 ease-in-out" key={item?.timestamp}>
                                                     <div className="record-txt">{index+1}</div>
                                                     <div className={`flex justify-center items-center rounded-full w-10 h-10 text-black text-xl font-bold mx-auto ${item?.smallestColor === 'Green' ? 'bg-[#3bc016]' :

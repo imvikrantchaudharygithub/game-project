@@ -31,7 +31,7 @@ const WinModal = ({resultdata,resultFilteritems}:any) => {
                 <div className="win-price">
                     <div className="gamesmheading">Bonus</div>
                     <div className="gamemdheading">₹ {totalAmount}</div>
-                    <p>Period Win 1 minute 20240626011264</p>
+                    <p>Period Win 30 sec</p>
                 </div>
                  )}
                 <p>6 Seconds auto close</p>
