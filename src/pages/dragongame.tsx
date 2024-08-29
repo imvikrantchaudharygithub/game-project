@@ -5,6 +5,10 @@ import { SetStateAction, useEffect, useState } from "react";
 import Breadcrumb from '../components/Breadcrumb';
 import React from "react";
 export default function Dragon() {
+    const [toggleState, setToggleState] = useState(1);
+    const toggleTab = (index: SetStateAction<number>) => {
+        setToggleState(index);
+    };
     const dragonpriceslider = {
 		dots: false,
 		arrows: true,
@@ -18,11 +22,21 @@ export default function Dragon() {
             <section className="dragon">
                 <div className="container">
                     <div className="dragon-main">
-                        <div className="time-circle">
-                            60
+                        <div className="dragon-main-top d-flex align">
+                            <div className="dragon-main-left">
+
+                            </div>
+                            <div className="time-circle">
+                                60
+                            </div>
+                            <div className="dragon-main-right">
+
+                            </div>
                         </div>
+                        
+                        
                         <div className="dragon-card d-flex">
-                            <div className="dragon-card-left">
+                            <button type="button" className="dragon-card-left hovertime">
                                 <div className="dragon-card-top d-flex justify-content align">
                                     <div className="dragon-card-percent">
                                         25%
@@ -42,8 +56,8 @@ export default function Dragon() {
                                     <div className="gamexxsheading">1:1</div>
                                     <div className="gamemdheading">Dragon</div>
                                 </div>
-                            </div>
-                            <div className="dragon-card-right">
+                            </button>
+                            <button type="button" className="dragon-card-right hovertime">
                                 <div className="dragon-card-top d-flex justify-end align">
                                     <ul className="dragon-card-price">
                                         <li className="d-flex justify-end align">
@@ -63,7 +77,7 @@ export default function Dragon() {
                                     <div className="gamexxsheading">1:1</div>
                                     <div className="gamemdheading">Tiger</div>
                                 </div>
-                            </div>
+                            </button>
                             <div className="dragon-card-mid">
                                 <div className="dragon-mid-top">
                                     <div className="gamexxsheading">11:1</div>
@@ -115,6 +129,59 @@ export default function Dragon() {
                                     </div>
                                 </Slider>
                                 
+                            </div>
+                        </div>
+
+                        <div className="fastparity-panel-box">
+                            <div className="fastparity-panel-content">
+                                <div className={toggleState === 1 ? "fastparity-panel active" : "fastparity-panel"}>
+                                    <div className="continuous-main">
+                                        <div className="table-responsive">
+                                            <table className="new-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Status</th>
+                                                        <th>Color</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td data-label="Name">John</td>
+                                                        <td data-label="Status"><span className="active">Active</span></td>
+                                                        <td data-label="Progress">20%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-label="Name">John</td>
+                                                        <td data-label="Status"><span className="active">Active</span></td>
+                                                        <td data-label="Progress">20%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-label="Name">John</td>
+                                                        <td data-label="Status"><span className="active">Active</span></td>
+                                                        <td data-label="Progress">20%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={toggleState === 2 ? "fastparity-panel active" : "fastparity-panel"}>
+                                    <div className="record-title">
+                                        <p>Fast Parity Record</p>
+                                    </div>
+                                </div>
+                                <div className={toggleState === 3 ? "fastparity-panel active" : "fastparity-panel"}>
+                                    <div className="probability-title">Your Wins</div>
+                                    <div className="continuous-main">
+                                        <div className="table-responsive">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="fastparity-panel-tab d-flex">
+                                <div className={toggleState === 1 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(1)}>Continuous</div>
+                                <div className={toggleState === 2 ? "fastparity-tab-item hovertime active" : "fastparity-tab-item hovertime"} onClick={() => toggleTab(2)}>Record</div>
                             </div>
                         </div>
                     </div>
