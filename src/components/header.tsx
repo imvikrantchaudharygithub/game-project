@@ -299,7 +299,7 @@ export default function Header() {
 
       }
       try {
-        await apipost("/send-otp", payload).then((res: any) => {
+        await apipost("/resetsend-otp", payload).then((res: any) => {
           console.log("user-send-otp", res.data)
           setloader(false)
           setActiveresetotpForm(prev => !prev)
