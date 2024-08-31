@@ -413,6 +413,11 @@ export default function Header() {
                     Dragon
                   </Link>
                 </li>
+                <li>
+                  <Link href='/rock'>
+                    Rock
+                  </Link>
+                </li>
                 {/* <li>
                   <Link href='#'>
                     Casino
