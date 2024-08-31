@@ -798,13 +798,12 @@ body.scroll{overflow-y: hidden;}
 
 /* rock-page */
 .rock-main{width: 70%; background: var(--card-color); padding: 20px; margin: 20px auto;}
-.rock-main .rock-btn{width: 120px; height: 120px; border-radius: 50%; position: relative;}
-.rock-main #monkey{ position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.5s ease; z-index: 1;}
+.rock-main .rock-btn{width: 120px; height: 120px; border-radius: 50%; }
+.rock-main #monkey{ position: absolute;top: 0;left: 0;transition: all 0.5s ease; z-index: 1; opacity: 0;}
+.rock-main .rock-btn.first-btn{opacity: 0;}
+.rock-main #monkey.second-btn{opacity: 1;}
 .rock-list{grid-template-columns: repeat(5,1fr); gap: 10px; }
-.rock-list .rock-card{background: var(--shadow-color); padding: 10px; border-radius: 5px;}
+.rock-list .rock-card{ padding: 10px; border-radius: 5px;}
 .rock-list .rock-card .rock-box{width: 80px; height: 80px; border-radius: 2px; background: var(--primary-color); margin: 0 0 10px; position: relative;}
 .rock-list .rock-card .rock-box:last-child{margin-bottom: 0;}
 
