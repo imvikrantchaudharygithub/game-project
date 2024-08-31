@@ -798,13 +798,13 @@ body.scroll{overflow-y: hidden;}
 
 /* rock-page */
 .rock-main{width: 70%; background: var(--card-color); padding: 20px; margin: 20px auto;}
-.rock-main .rock-btn{width: 120px; height: 120px; border-radius: 50%; }
+.rock-main .rock-btn{width: 120px; height: auto; border-radius: 50%; margin: 0 auto;}
 .rock-main #monkey{ position: absolute;top: 0;left: 0;transition: all 0.5s ease; z-index: 1; opacity: 0;}
 .rock-main .rock-btn.first-btn{opacity: 0;}
 .rock-main #monkey.second-btn{opacity: 1;}
-.rock-list{grid-template-columns: repeat(5,1fr); gap: 10px; }
+.rock-list{width: 50%; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 20px auto;}
 .rock-list .rock-card{ padding: 10px; border-radius: 5px;}
-.rock-list .rock-card .rock-box{width: 80px; height: 80px; border-radius: 2px; background: var(--primary-color); margin: 0 0 10px; position: relative;}
+.rock-list .rock-card .rock-box{width: 80px; height: 80px; border-radius: 2px; background: var(--primary-color); margin: 0 auto 10px; position: relative;}
 .rock-list .rock-card .rock-box:last-child{margin-bottom: 0;}
 
 
@@ -1025,6 +1025,11 @@ body.scroll{overflow-y: hidden;}
 .fastparity-bet-bottom .fastparity-bet-box .count{width: 100%; margin-right: 0px; margin-bottom: 5px;}
 .fastparity-bet-bottom .fastparity-bet-box .fastparity-num-list, .fastparity-bet-bottom .fastparity-bet-amount, .fastparity-bet-bottom .fastparity-bets-amount{width: 100%;}
 
+.rock-main{padding: 5px;}
+.rock-main, .rock-list{width: 100%; margin: 0;}
+.rock-main #monkey img{width: 60px; height: 60px;}
+.rock-list .rock-card .rock-box{width: 60px; height: 60px;}
+.rock-main .rock-btn{width: 60px;}
 } 
 
 @media only screen and (max-width: 419px){
