@@ -57,6 +57,31 @@ export default function Rock() {
                     </div>
                 </div>
             </section>
+            {/* <div className="fastparity-bet-content fastparity-bet-bottom">
+                <div className={toggleBet === 1 ? "content-tab active" : "content-tab"}>
+                    <div className="fastparity-bet-box d-flex">
+                        <div className="fastparity-bets-amount">
+                            <div className="count d-flex">
+                                <button className="count-btn" onClick={dec}>-</button>
+                                <input className="count-num" type="number" onChange={oncountChange} value={count} />
+                                <button className="count-btn" onClick={inc}>+</button>
+                            </div>
+                            <div className="fastparity-num-list d-grid">
+                                <button className="fastparity-num-item hovertime" onClick={() => setCount(50)}>50</button>
+                                <button className="fastparity-num-item hovertime" onClick={() => setCount(100)}>100</button>
+                                <button className="fastparity-num-item hovertime" onClick={() => setCount(200)}>200</button>
+                                <button className="fastparity-num-item hovertime" onClick={() => setCount(500)}>500</button>
+                            </div>
+                        </div>
+                        <div className="fastparity-bet-amount">
+                            <button className="anchor-button bet-btn hovertime" onClick={handleBet}>
+                                Bet
+                                <span>₹{count} RS</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
         </>
     );
 }
