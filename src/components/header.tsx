@@ -418,6 +418,11 @@ export default function Header() {
                     Rock
                   </Link>
                 </li>
+                <li>
+                  <Link href='/gamelist'>
+                    Game List
+                  </Link>
+                </li>
                 {/* <li>
                   <Link href='#'>
                     Casino

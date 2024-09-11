@@ -807,7 +807,81 @@ body.scroll{overflow-y: hidden;}
 .rock-list .rock-card .rock-box{width: 80px; height: 80px; border-radius: 2px; background: var(--primary-color); margin: 0 auto 10px; position: relative;}
 .rock-list .rock-card .rock-box:last-child{margin-bottom: 0;}
 
+/* game-cards */
+.game-cards .game-cards-thumbs{padding-bottom: 130%;}
+.game-cards .game-cards-thumbs img{border-radius: 10px;}
+.game-cards .game-cards-content{padding-top: 5px;}
+.game-cards .game-cards-content p{position: relative; display: flex; align-items: center;}
+.game-cards .game-cards-content p::before{content: ''; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: var(--primary-color); display: block; animation: ripple 1s infinite;}
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 #00e70166
+  }
 
+  30% {
+      box-shadow: 0 0 2px 2px #00e70166
+  }
+
+  70% {
+      box-shadow: 0 0 2px 2px #00e70166
+  }
+
+  to {
+      box-shadow: 0 0 #00e70166
+  }
+}
+
+.game-mains{background: #213743; border-radius: 12px; overflow: hidden;}
+.games-lest{width: 350px; min-width: 350px; padding: 12px;}
+.games-right{width: 100%; display: flex; flex-direction: column; flex: 1; flex-grow: 1; height: 600px; padding: 10px; background: #0f212e;}
+
+.convert{width: 100%; display: flex; align-items: center; justify-content: center; height: 100%; flex-direction: column; flex: 1;}
+.convert .gameheading{font-size: 120px; font-weight: 600;}
+.footer-multiplier{width: 100%; background: #213743; padding: 15px; border-radius: 5px; box-shadow: 0 4px 6px -1px rgba(27, 23, 23, .2), 0 2px 4px -1px rgba(0, 0, 0, .12);}
+.footer-multiplier .form-row{margin: 0 -15px;}
+.footer-multiplier .form-group{width: 50%; padding: 0 15px; margin: 0; position: relative;}
+.footer-multiplier .form-group .form-label{color: var(--white); margin-bottom: 5px;}
+.footer-multiplier .form-group .form-control{height: 40px; background: #0f212e; border: 1px solid #2f4553; padding-right: 50px;}
+.footer-multiplier .form-group span{font-size: 20px; color: var(--white); position: absolute; top: 30px; right: 30px;}
+
+.bet-tab{width: 100%; background: #0f212e; padding: 5px; border-radius: 50px; display: grid; grid-template-columns: repeat(2,1fr); gap: 5px; margin-bottom: 10px;}
+.bet-tabs{font-size: 14px; color: var(--white); text-align: center; padding: 12px 15px; border-radius: 50px; cursor: pointer;}
+.bet-tabs.active{background: rgba(255, 255, 255, 0.3);}
+.bet-input{margin-bottom: 10px;}
+.bet-input .form-label{font-size: 14px; color: #fff; display: flex; align-items: center; justify-content: space-between; margin-bottom: 5px;}
+
+.bet-input-box{padding: 2px; border-radius: 4px; background: #2f4553; position: relative;}
+.bet-input-box .form-group{margin-bottom: 0;}
+.bet-input-box span{position: absolute; top: 0; left: 0; }
+.bet-amount-input{display: flex; align-items: center; justify-content: flex-start;}
+.bet-amount-input .form-group{width: 100%;margin-right: auto;}
+.bet-amount-input .form-control{ border-radius: 0;}
+.bet-amount-input .number-btn{width: 40px; min-width: 40px; height: 45px; display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff;}
+.bet-amount-input .number-btn:hover{background: rgba(133, 133, 133, 0.5);}
+
+.roulette-main{padding: 30px 50px;}
+.roulette-top{display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;}
+.roulette-top .roulette-mid img{width: 90%; margin: 0 auto; animation: mymove 5s linear infinite;}
+.roulette-list{grid-area: board;display: grid;gap: 3px; margin-top: 20px; grid-template-areas:
+  'number0 number3 number6 number9 number12 number15 number18 number21 number24 number27 number30 number33 number36 row1'
+  'number0 number2 number5 number8 number11 number14 number17 number20 number23 number26 number29 number32 number35 row2'
+  'number0 number1 number4 number7 number10 number13 number16 number19 number22 number25 number28 number31 number34 row3'
+  '. range0112 range0112 range0112 range0112 range1324 range1324 range1324 range1324 range2536 range2536 range2536 range2536 .'
+  '. range0118 range0118 parityEven parityEven colorRed colorRed colorBlack colorBlack parityOdd parityOdd range1936 range1936 .';
+}
+.roulette-list .pocket{font-size: 14px; color: #fff; padding: 8px; text-align: center;}
+.roulette-list .border-range{border: 2px solid #2F4553;}
+.roulette-list .pocketblack{background: #2F4553;}
+.roulette-list .pocketred{background: #FE2247; border-color: #FE2247;}
+.roulette-list .pocketgreen{background: var(--primary-color); border-color: var(--primary-color);}
+@keyframes mymove {
+  0%{
+    transform: rotate(0deg);
+   }
+100%{
+    transform: rotate(-360deg);
+   }
+}
 
 @media (max-width:720px){
   main{
