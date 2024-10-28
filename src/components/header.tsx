@@ -408,6 +408,21 @@ export default function Header() {
                     </li>
                   </ul> */}
                 </li>
+                <li>
+                  <Link href='/dragongame'>
+                    Dragon
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/rock'>
+                    Rock
+                  </Link>
+                </li>
+                <li>
+                  <Link href='/gamelist'>
+                    Game List
+                  </Link>
+                </li>
                 {/* <li>
                   <Link href='#'>
                     Casino

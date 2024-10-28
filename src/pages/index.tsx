@@ -17,14 +17,14 @@ export default function Home() {
   return (
     <main>
       <Homes></Homes>
-      {/* <Search></Search>
+      <Search></Search>
       <HomeBanner></HomeBanner>
       <Banner></Banner>
       <MultipleGame></MultipleGame>
       <RecentBigWins></RecentBigWins>
       <TopRatedGames></TopRatedGames>
       <LatestBet></LatestBet>
-      <RecommendedGames></RecommendedGames> */}
+      <RecommendedGames></RecommendedGames>
     </main>
   );
 }
